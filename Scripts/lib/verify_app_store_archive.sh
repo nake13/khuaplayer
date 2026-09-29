@@ -423,6 +423,12 @@ verify_boolean_entitlement "main app" "$MAIN_ENTITLEMENTS" \
   com.apple.security.app-sandbox
 verify_boolean_entitlement "main app" "$MAIN_ENTITLEMENTS" \
   com.apple.security.files.user-selected.read-write
+verify_boolean_entitlement "main app" "$MAIN_ENTITLEMENTS" \
+  com.apple.security.files.bookmarks.app-scope
+verify_boolean_entitlement "main app" "$MAIN_ENTITLEMENTS" \
+  com.apple.security.files.downloads.read-write
+verify_boolean_entitlement "main app" "$MAIN_ENTITLEMENTS" \
+  com.apple.security.assets.movies.read-write
 verify_boolean_entitlement "Quick Look extension" "$APPEX_ENTITLEMENTS" \
   com.apple.security.app-sandbox
 verify_boolean_entitlement "Quick Look extension" "$APPEX_ENTITLEMENTS" \

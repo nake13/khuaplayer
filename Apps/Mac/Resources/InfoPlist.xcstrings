@@ -1,0 +1,546 @@
+{
+  "sourceLanguage": "en",
+  "strings": {
+    "NSDesktopFolderUsageDescription": {
+      "comment": "Privacy prompt purpose: scanning the opened video's folder",
+      "extractionState": "manual",
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Wird verwendet, um im Ordner des geöffneten Videos Untertitel und die nächste Folge zu finden."
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Used to find subtitles and the next episode in the folder of the video you open."
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Se usa para buscar subtítulos y el siguiente episodio en la carpeta del vídeo que abres."
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Permet de trouver les sous-titres et l’épisode suivant dans le dossier de la vidéo ouverte."
+          }
+        },
+        "id": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Digunakan untuk menemukan subtitel dan episode berikutnya di folder video yang Anda buka."
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Serve per trovare i sottotitoli e l’episodio successivo nella cartella del video aperto."
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "開いたビデオと同じフォルダ内の字幕や次のエピソードを探すために使用します。"
+          }
+        },
+        "ko": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "연 동영상과 같은 폴더에서 자막과 다음 에피소드를 찾는 데 사용됩니다."
+          }
+        },
+        "nl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Wordt gebruikt om ondertitels en de volgende aflevering te vinden in de map van de geopende video."
+          }
+        },
+        "pl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Służy do wyszukiwania napisów i następnego odcinka w folderze otwartego wideo."
+          }
+        },
+        "pt": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Usado para encontrar legendas e o próximo episódio na pasta do vídeo aberto."
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Используется для поиска субтитров и следующей серии в папке открытого видео."
+          }
+        },
+        "th": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ใช้ค้นหาคำบรรยายและตอนถัดไปในโฟลเดอร์ของวิดีโอที่คุณเปิด"
+          }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Açtığınız videonun klasöründe altyazıları ve sonraki bölümü bulmak için kullanılır."
+          }
+        },
+        "vi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Dùng để tìm phụ đề và tập tiếp theo trong thư mục của video bạn mở."
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "用于在你打开的视频所在文件夹中查找字幕和下一集。"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "用於在你開啟的影片所在資料夾中尋找字幕和下一集。"
+          }
+        }
+      }
+    },
+    "NSDocumentsFolderUsageDescription": {
+      "comment": "Privacy prompt purpose: scanning the opened video's folder",
+      "extractionState": "manual",
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Wird verwendet, um im Ordner des geöffneten Videos Untertitel und die nächste Folge zu finden."
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Used to find subtitles and the next episode in the folder of the video you open."
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Se usa para buscar subtítulos y el siguiente episodio en la carpeta del vídeo que abres."
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Permet de trouver les sous-titres et l’épisode suivant dans le dossier de la vidéo ouverte."
+          }
+        },
+        "id": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Digunakan untuk menemukan subtitel dan episode berikutnya di folder video yang Anda buka."
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Serve per trovare i sottotitoli e l’episodio successivo nella cartella del video aperto."
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "開いたビデオと同じフォルダ内の字幕や次のエピソードを探すために使用します。"
+          }
+        },
+        "ko": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "연 동영상과 같은 폴더에서 자막과 다음 에피소드를 찾는 데 사용됩니다."
+          }
+        },
+        "nl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Wordt gebruikt om ondertitels en de volgende aflevering te vinden in de map van de geopende video."
+          }
+        },
+        "pl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Służy do wyszukiwania napisów i następnego odcinka w folderze otwartego wideo."
+          }
+        },
+        "pt": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Usado para encontrar legendas e o próximo episódio na pasta do vídeo aberto."
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Используется для поиска субтитров и следующей серии в папке открытого видео."
+          }
+        },
+        "th": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ใช้ค้นหาคำบรรยายและตอนถัดไปในโฟลเดอร์ของวิดีโอที่คุณเปิด"
+          }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Açtığınız videonun klasöründe altyazıları ve sonraki bölümü bulmak için kullanılır."
+          }
+        },
+        "vi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Dùng để tìm phụ đề và tập tiếp theo trong thư mục của video bạn mở."
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "用于在你打开的视频所在文件夹中查找字幕和下一集。"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "用於在你開啟的影片所在資料夾中尋找字幕和下一集。"
+          }
+        }
+      }
+    },
+    "NSDownloadsFolderUsageDescription": {
+      "comment": "Privacy prompt purpose: scanning the opened video's folder",
+      "extractionState": "manual",
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Wird verwendet, um im Ordner des geöffneten Videos Untertitel und die nächste Folge zu finden."
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Used to find subtitles and the next episode in the folder of the video you open."
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Se usa para buscar subtítulos y el siguiente episodio en la carpeta del vídeo que abres."
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Permet de trouver les sous-titres et l’épisode suivant dans le dossier de la vidéo ouverte."
+          }
+        },
+        "id": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Digunakan untuk menemukan subtitel dan episode berikutnya di folder video yang Anda buka."
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Serve per trovare i sottotitoli e l’episodio successivo nella cartella del video aperto."
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "開いたビデオと同じフォルダ内の字幕や次のエピソードを探すために使用します。"
+          }
+        },
+        "ko": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "연 동영상과 같은 폴더에서 자막과 다음 에피소드를 찾는 데 사용됩니다."
+          }
+        },
+        "nl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Wordt gebruikt om ondertitels en de volgende aflevering te vinden in de map van de geopende video."
+          }
+        },
+        "pl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Służy do wyszukiwania napisów i następnego odcinka w folderze otwartego wideo."
+          }
+        },
+        "pt": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Usado para encontrar legendas e o próximo episódio na pasta do vídeo aberto."
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Используется для поиска субтитров и следующей серии в папке открытого видео."
+          }
+        },
+        "th": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ใช้ค้นหาคำบรรยายและตอนถัดไปในโฟลเดอร์ของวิดีโอที่คุณเปิด"
+          }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Açtığınız videonun klasöründe altyazıları ve sonraki bölümü bulmak için kullanılır."
+          }
+        },
+        "vi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Dùng để tìm phụ đề và tập tiếp theo trong thư mục của video bạn mở."
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "用于在你打开的视频所在文件夹中查找字幕和下一集。"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "用於在你開啟的影片所在資料夾中尋找字幕和下一集。"
+          }
+        }
+      }
+    },
+    "NSNetworkVolumesUsageDescription": {
+      "comment": "Privacy prompt purpose: scanning the opened video's folder",
+      "extractionState": "manual",
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Wird verwendet, um im Ordner des geöffneten Videos Untertitel und die nächste Folge zu finden."
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Used to find subtitles and the next episode in the folder of the video you open."
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Se usa para buscar subtítulos y el siguiente episodio en la carpeta del vídeo que abres."
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Permet de trouver les sous-titres et l’épisode suivant dans le dossier de la vidéo ouverte."
+          }
+        },
+        "id": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Digunakan untuk menemukan subtitel dan episode berikutnya di folder video yang Anda buka."
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Serve per trovare i sottotitoli e l’episodio successivo nella cartella del video aperto."
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "開いたビデオと同じフォルダ内の字幕や次のエピソードを探すために使用します。"
+          }
+        },
+        "ko": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "연 동영상과 같은 폴더에서 자막과 다음 에피소드를 찾는 데 사용됩니다."
+          }
+        },
+        "nl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Wordt gebruikt om ondertitels en de volgende aflevering te vinden in de map van de geopende video."
+          }
+        },
+        "pl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Służy do wyszukiwania napisów i następnego odcinka w folderze otwartego wideo."
+          }
+        },
+        "pt": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Usado para encontrar legendas e o próximo episódio na pasta do vídeo aberto."
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Используется для поиска субтитров и следующей серии в папке открытого видео."
+          }
+        },
+        "th": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ใช้ค้นหาคำบรรยายและตอนถัดไปในโฟลเดอร์ของวิดีโอที่คุณเปิด"
+          }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Açtığınız videonun klasöründe altyazıları ve sonraki bölümü bulmak için kullanılır."
+          }
+        },
+        "vi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Dùng để tìm phụ đề và tập tiếp theo trong thư mục của video bạn mở."
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "用于在你打开的视频所在文件夹中查找字幕和下一集。"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "用於在你開啟的影片所在資料夾中尋找字幕和下一集。"
+          }
+        }
+      }
+    },
+    "NSRemovableVolumesUsageDescription": {
+      "comment": "Privacy prompt purpose: scanning the opened video's folder",
+      "extractionState": "manual",
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Wird verwendet, um im Ordner des geöffneten Videos Untertitel und die nächste Folge zu finden."
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Used to find subtitles and the next episode in the folder of the video you open."
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Se usa para buscar subtítulos y el siguiente episodio en la carpeta del vídeo que abres."
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Permet de trouver les sous-titres et l’épisode suivant dans le dossier de la vidéo ouverte."
+          }
+        },
+        "id": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Digunakan untuk menemukan subtitel dan episode berikutnya di folder video yang Anda buka."
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Serve per trovare i sottotitoli e l’episodio successivo nella cartella del video aperto."
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "開いたビデオと同じフォルダ内の字幕や次のエピソードを探すために使用します。"
+          }
+        },
+        "ko": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "연 동영상과 같은 폴더에서 자막과 다음 에피소드를 찾는 데 사용됩니다."
+          }
+        },
+        "nl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Wordt gebruikt om ondertitels en de volgende aflevering te vinden in de map van de geopende video."
+          }
+        },
+        "pl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Służy do wyszukiwania napisów i następnego odcinka w folderze otwartego wideo."
+          }
+        },
+        "pt": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Usado para encontrar legendas e o próximo episódio na pasta do vídeo aberto."
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Используется для поиска субтитров и следующей серии в папке открытого видео."
+          }
+        },
+        "th": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ใช้ค้นหาคำบรรยายและตอนถัดไปในโฟลเดอร์ของวิดีโอที่คุณเปิด"
+          }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Açtığınız videonun klasöründe altyazıları ve sonraki bölümü bulmak için kullanılır."
+          }
+        },
+        "vi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Dùng để tìm phụ đề và tập tiếp theo trong thư mục của video bạn mở."
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "用于在你打开的视频所在文件夹中查找字幕和下一集。"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "用於在你開啟的影片所在資料夾中尋找字幕和下一集。"
+          }
+        }
+      }
+    }
+  },
+  "version": "1.0"
+}

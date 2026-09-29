@@ -98,6 +98,8 @@ targets:
       - path: ../../Modules/Captions
       - path: Resources/Localizable.xcstrings
         buildPhase: resources
+      - path: Resources/InfoPlist.xcstrings
+        buildPhase: resources
       - path: Resources/Assets.xcassets
       - path: Resources/PrivacyInfo.xcprivacy
         buildPhase: resources
@@ -144,6 +146,15 @@ targets:
         LSApplicationCategoryType: public.app-category.video
         NSHumanReadableCopyright: "Copyright © 2026 Khua contributors"
         NSSpeechRecognitionUsageDescription: "Khua generates subtitles from the audio of the media you open. Processing takes place on this Mac."
+        # Folder and volume privacy prompts appear only when Khua scans the
+        # folder of a video you opened. Translations: Resources/InfoPlist.xcstrings.
+        NSDesktopFolderUsageDescription: "Used to find subtitles and the next episode in the folder of the video you open."
+        NSDocumentsFolderUsageDescription: "Used to find subtitles and the next episode in the folder of the video you open."
+        NSDownloadsFolderUsageDescription: "Used to find subtitles and the next episode in the folder of the video you open."
+        NSNetworkVolumesUsageDescription: "Used to find subtitles and the next episode in the folder of the video you open."
+        NSRemovableVolumesUsageDescription: "Used to find subtitles and the next episode in the folder of the video you open."
+        # Only system-provided encryption (HTTPS for update checks) is used.
+        ITSAppUsesNonExemptEncryption: false
         CFBundleDocumentTypes:
           - CFBundleTypeName: "Video"
             CFBundleTypeRole: Viewer
@@ -269,7 +280,14 @@ targets:
       path: KhuaPlayer.entitlements
       properties:
         com.apple.security.app-sandbox: true
+        # Files and folders the user opens or grants in an open panel.
         com.apple.security.files.user-selected.read-write: true
+        # Recent items and granted folders survive relaunches as bookmarks.
+        com.apple.security.files.bookmarks.app-scope: true
+        # Subtitles, the next episode, generated captions, and screenshots
+        # beside videos in Downloads and Movies without a folder prompt.
+        com.apple.security.files.downloads.read-write: true
+        com.apple.security.assets.movies.read-write: true
     settings:
       base:
         PRODUCT_BUNDLE_IDENTIFIER: $(KHUA_BUNDLE_ID)
