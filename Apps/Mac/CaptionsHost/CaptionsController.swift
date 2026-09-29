@@ -1,6 +1,65 @@
 import AppKit
 import NaturalLanguage
 
+/// Bound a system-framework metadata query that is allowed to never answer.
+///
+/// `SpeechTranscriber.supportedLocales` and `LanguageAvailability`'s
+/// `supportedLanguages` are async properties backed by system services. When
+/// that service is unavailable the await can suspend indefinitely, which would
+/// otherwise leave the options notice on screen with no way forward. The query
+/// is abandoned once the deadline passes and its late result is discarded.
+private enum CaptionOptionQuery {
+    /// Long enough to absorb a cold system service, short enough that a wedged
+    /// one degrades to a partial options sheet instead of a stuck notice.
+    static let timeout: TimeInterval = 5
+
+    static func bounded<Value: Sendable>(
+        _ seconds: TimeInterval,
+        _ query: @escaping @Sendable () async -> Value
+    ) async -> Value? {
+        guard !_Concurrency.Task.isCancelled else { return nil }
+        let slot = OptionQuerySlot<Value>()
+        return await withCheckedContinuation { (continuation: CheckedContinuation<Value?, Never>) in
+            // Arm before starting either racer so the slot owns the continuation
+            // before anything can settle it.
+            slot.arm(continuation)
+            // Deliberately unstructured: a service that never answers must not
+            // keep the caller suspended, and it cannot be cancelled from here.
+            _Concurrency.Task {
+                let value = await query()
+                slot.settle(value)
+            }
+            DispatchQueue.global(qos: .utility).asyncAfter(deadline: .now() + seconds) {
+                slot.settle(nil)
+            }
+        }
+    }
+}
+
+/// Single-use handoff for `CaptionOptionQuery.bounded`. Whichever of the query
+/// or its deadline arrives first wins; later arrivals are dropped.
+private final class OptionQuerySlot<Value: Sendable>: @unchecked Sendable {
+    private let lock = NSLock()
+    private var waiting: CheckedContinuation<Value?, Never>?
+    private var settled = false
+
+    func arm(_ continuation: CheckedContinuation<Value?, Never>) {
+        lock.lock()
+        waiting = continuation
+        lock.unlock()
+    }
+
+    func settle(_ value: Value?) {
+        lock.lock()
+        guard !settled else { lock.unlock(); return }
+        settled = true
+        let continuation = waiting
+        waiting = nil
+        lock.unlock()
+        continuation?.resume(returning: value)
+    }
+}
+
 // Window-level integration for menus, task submission and generated subtitle
 // display. Construct lazily outside the first-frame path. The app task center
 // owns execution; this controller attaches one window to its media's task.
@@ -206,21 +265,34 @@ final class CaptionsController: NSObject {
             self?.cancelInterfaceWork()
         })
         interfaceTask = _Concurrency.Task { @MainActor [weak self] in
-            let locales = await CaptionTranscriber.supportedLocales()
-            let targets = await CaptionTranslator.supportedLanguages()
+            // Both queries are bounded and start together, so a wedged system
+            // service costs one deadline instead of one per query.
+            async let transcriberLocales = CaptionOptionQuery.bounded(CaptionOptionQuery.timeout) {
+                await CaptionTranscriber.supportedLocales()
+            }
+            async let translatorTargets = CaptionOptionQuery.bounded(CaptionOptionQuery.timeout) {
+                await CaptionTranslator.supportedLanguages()
+            }
+            let loadedLocales: [Locale]? = await transcriberLocales
+            let loadedTargets: [Locale.Language]? = await translatorTargets
+            let locales = loadedLocales ?? []
+            let targets = loadedTargets ?? []
             let sidecars = await CaptionSubtitleFiles.sidecars(for: context.mediaURL, shouldPause: { !CaptionProbeRegistry.idle() })
             guard let self, gen == self.sessionGeneration, self.interfaceRequestID == requestID,
                   !_Concurrency.Task.isCancelled else { return }
             self.interfaceTask = nil
             self.interfaceRequestID = nil
             self.hideStatus()
-            guard !locales.isEmpty || !targets.isEmpty else {
-                self.presentError(L("captions.error.unavailable"), in: context.window)
-                return
-            }
             var sources: [SubtitleSource] = context.embeddedTextTracks.map { .embedded(index: $0.index, title: $0.title) }
             sources += context.externalSubtitleFiles.map { .file($0) }
             sources += sidecars.filter { !context.externalSubtitleFiles.contains($0) }.map { .file($0) }
+            // Speech needs a language list and subtitle translation needs a target
+            // list, so require one mode that can actually run. Otherwise a partial
+            // answer after a timeout would open a sheet whose Generate cannot finish.
+            guard !locales.isEmpty || (!sources.isEmpty && !targets.isEmpty) else {
+                self.presentError(L("captions.error.unavailable"), in: context.window)
+                return
+            }
             let sheet = CaptionSheet(context: context, transcriberLocales: locales, targetLanguages: targets,
                                      subtitleSources: sources, existingSidecars: sidecars)
             sheet.present { [weak self] choice in
@@ -895,7 +967,9 @@ final class CaptionSheet: NSObject {
         grid.frame = NSRect(x: 0, y: 0, width: 640, height: grid.fittingSize.height)
         alert.accessoryView = grid
         // Prefer translating existing text when available, otherwise use speech.
-        let hasSubtitles = !sources.isEmpty
+        // Generating from a track always needs a translation target, so an empty
+        // target list disables that mode rather than letting Generate do nothing.
+        let hasSubtitles = !sources.isEmpty && !targets.isEmpty
         subtitleRadio.isEnabled = hasSubtitles
         subtitleRadio.state = hasSubtitles ? .on : .off
         speechRadio.state = hasSubtitles ? .off : .on
