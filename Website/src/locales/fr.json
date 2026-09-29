@@ -1,0 +1,244 @@
+{
+  "meta": {
+    "title": "Khua Player — Un lecteur pensé pour la vitesse",
+    "description": "Un lecteur libre et rapide pour les Mac avec puce Apple. Motion+, luminosité étendue, sous-titres locaux et lecture, dans la mesure du possible, des fichiers endommagés ou incomplets."
+  },
+  "nav": [
+    "Performances",
+    "Fichiers abîmés",
+    "Améliorations",
+    "Formats",
+    "Sous-titres",
+    "Coup d’œil",
+    "Traînée d’étoiles",
+    "Confidentialité",
+    "Code source"
+  ],
+  "download": "Télécharger",
+  "github": "Voir sur GitHub",
+  "compatibility": "Puce Apple · macOS 14 ou ultérieur",
+  "hero": {
+    "eyebrow": "Lecteur multimédia libre pour macOS",
+    "title": "Un lecteur\nfait pour la *{}*.",
+    "rotating": [
+      "vitesse",
+      "réactivité",
+      "fluidité",
+      "sobriété",
+      "performance"
+    ],
+    "description": "Un double-clic, et la lecture commence. MKV, MP4, HDR, 4K, même les fichiers abîmés ou encore en cours de téléchargement, quand c’est possible. Léger et discret, conçu pour les puces Apple.",
+    "download": "Télécharger pour macOS"
+  },
+  "performance": {
+    "title": "Pensé pour la puce\nde votre *Mac*.",
+    "description": "Khua est conçu exclusivement pour les puces Apple. Quand le format le permet, le moteur multimédia dédié décode la vidéo et les images vont directement à l’écran. Un démarrage rapide et une lecture 4K et HDR fluide laissent votre Mac disponible pour le reste.",
+    "note": "Puce Apple uniquement. Les Mac Intel ne sont pas pris en charge.",
+    "facts": [
+      "Décodage matériel",
+      "Rendu direct avec Metal",
+      "Lecture HDR et 4K"
+    ],
+    "diagram": {
+      "heading": "Le chemin d’une image jusqu’à l’écran",
+      "file": "Votre fichier",
+      "zeroCopy": "Sans copie",
+      "caption": "Quand le format le permet, le moteur multimédia décode la vidéo et Metal l’affiche. Les images restent dans la mémoire partagée avec le GPU, sans copie intermédiaire."
+    }
+  },
+  "boosts": {
+    "title": "Plus fluide, plus clair,\nplus *rapide*.",
+    "description": "Motion+ fluidifie les mouvements, Brightness+ éclaire l’image et Turbo accélère les passages plus lents.",
+    "motion": {
+      "description": "Motion+ crée des images intermédiaires pour adoucir panoramiques et mouvements rapides. Maintenez C lorsque la fonction est active pour comparer l’original et le résultat côte à côte.",
+      "note": "Nécessite macOS 26 et un Mac compatible. Vidéos jusqu’en 4K, à vitesse 1×. En cas de forte charge, seule une partie de l’image peut être améliorée.",
+      "label": "Panoramique nocturne : original à 24 i/s à gauche, Motion+ à 48 i/s à droite.",
+      "before": "Original",
+      "after": "Interpolation 2×",
+      "legendOriginal": "Images originales",
+      "legendGenerated": "Images créées par Motion+"
+    },
+    "brightness": {
+      "description": "Les écrans comme le XDR du MacBook Pro peuvent dépasser la luminosité du blanc habituel. Le HDR utilise déjà cette réserve ; Brightness+ la rend accessible aux vidéos SDR.",
+      "note": "Illustration. L’effet réel nécessite un écran disposant d’une réserve de luminosité.",
+      "label": "Scène nocturne plus sombre sans Brightness+ et plus lumineuse avec.",
+      "before": "Désactivé"
+    },
+    "turbo": {
+      "description": "Maintenez Espace pendant la lecture pour passer à 2× ; relâchez pour revenir à la normale. La hauteur des voix est préservée. Réglable jusqu’à 5×.",
+      "label": "Une vidéo accélère à 2× pendant l’appui sur Espace.",
+      "key": "Espace",
+      "keyLabel": "Maintenir pour essayer Turbo",
+      "hint": "Maintenez la touche"
+    }
+  },
+  "resilience": {
+    "title": "Fichier abîmé ?\nLa lecture *continue*.",
+    "description": "Téléchargement interrompu, enregistrement en cours, passage endommagé : Khua essaie de lire tout ce qui reste lisible. Il répare en mémoire sans modifier l’original, saute les zones irrécupérables et les marque sur la timeline. Si le téléchargement continue, la lecture reprend à mesure que les données arrivent.",
+    "note": "Tous les fichiers endommagés ne sont pas récupérables. Khua explique les échecs de lecture.",
+    "label": "Timeline aux couleurs de la vidéo : zones abîmées en ambre et rouge, données non téléchargées en gris.",
+    "progress": "Téléchargement {p}%",
+    "done": "Téléchargement terminé",
+    "playing": "Lecture",
+    "waiting": "En attente du téléchargement…",
+    "legend": [
+      "Partiellement lisible",
+      "Indisponible",
+      "Les particules grises espacées ne sont pas encore téléchargées"
+    ]
+  },
+  "subtitles": {
+    "eyebrow": "Sous-titres sur votre Mac",
+    "title": "Pas de sous-titres ?\nEn *voici*.",
+    "description": "Khua génère des sous-titres à partir de l’audio, directement sur votre Mac. Il traduit aussi les nouveaux sous-titres ou ceux que vous possédez déjà. La traduction apparaît au-dessus de l’original, les lignes s’affichent au fil de la génération, et le résultat peut être enregistré en SRT à côté de la vidéo.",
+    "note": "Nécessite macOS 26. Les langues dépendent de macOS, qui peut télécharger un modèle linguistique au premier usage.",
+    "label": "Traduction française au-dessus de la ligne originale japonaise.",
+    "status": "Transcription {p}% · sous-titres prêts jusqu’à {t}",
+    "cues": [
+      "Partons avant le lever du soleil.",
+      "La route du nord devrait encore être ouverte.",
+      "Alors, mieux vaut se dépêcher."
+    ]
+  },
+  "formats": {
+    "title": "Vos fichiers,\ntout *simplement*.",
+    "description": "MKV, MP4, MOV, WebM, AVI, MPEG-TS, FLV, WMV et formats audio courants. HDR, AV1, H.266 (VVC), ProRes, MXF et DNxHD aussi. Les sous-titres intégrés ou présents dans le même dossier se chargent automatiquement, sans recherche ni téléchargement en ligne. Aucune conversion ni pack de codecs supplémentaire."
+  },
+  "timeline": {
+    "title": "Le temps, aux couleurs\nde votre *vidéo*.",
+    "description": "La timeline par défaut est formée de milliers de particules : leurs couleurs viennent de la vidéo, leur densité suit son débit. La partie vue devient une ligne lumineuse ; la suite flotte encore. Les particules s’éclairent sous le pointeur, au-delà du blanc habituel sur un écran XDR.",
+    "note": "Les styles Liquide et Classique sont également disponibles.",
+    "label": "Timeline interactive en traînée d’étoiles, colorée par la vidéo et lumineuse au passage du pointeur.",
+    "hint": "Survolez ou faites glisser la timeline",
+    "switchLabel": "Style de timeline",
+    "styles": [
+      "Étoiles",
+      "Liquide",
+      "Classique"
+    ]
+  },
+  "quickLook": {
+    "title": "Appuyez sur Espace.\nMême pour un *MKV*.",
+    "description": "Sélectionnez une vidéo compatible dans le Finder et appuyez sur Espace pour la lire immédiatement, MKV compris. L’extension Coup d’œil de Khua intègre son propre moteur de lecture et ouvre l’aperçu à davantage de formats.",
+    "label": "Illustration : sélectionner un MKV dans le Finder et appuyer sur Espace pour le lire avec Coup d’œil.",
+    "folder": "Vidéos",
+    "favorites": "Favoris",
+    "sidebar": [
+      "Bureau",
+      "Téléchargements",
+      "Vidéos",
+      "Documents"
+    ],
+    "key": "Espace",
+    "openWith": "Ouvrir avec Khua"
+  },
+  "size": {
+    "eyebrow": "Léger par choix",
+    "title": "Fermé, discret.\nOuvert, *léger*.",
+    "description": "Une fois Khua fermé, aucun agent de barre des menus ni programme de mise à jour ne reste actif. Les formats compatibles utilisent le moteur multimédia pour ménager le processeur. L’application elle-même reste compacte.",
+    "note": "Environ 20 Mo actuellement."
+  },
+  "privacy": {
+    "title": "Vos médias restent\nsur votre *Mac*.",
+    "description": "Pas de compte, pas de publicité, pas de suivi de lecture. Vidéos, historique, génération et traduction des sous-titres restent sur votre Mac. Les vérifications de mise à jour existantes incluent des statistiques d’installation limitées, sans requête supplémentaire ni donnée de lecture. Consultez la politique de confidentialité pour les détails.",
+    "action": "Lire la politique de confidentialité"
+  },
+  "openSource": {
+    "title": "Code ouvert.\nVoyez par *vous-même*.",
+    "description": "Le code de Khua Player est disponible sur GitHub sous licence MIT. Explorez son fonctionnement, compilez l’app ou contribuez à une correction. Vos idées et signalements sont les bienvenus.",
+    "action": "Explorer sur GitHub"
+  },
+  "details": {
+    "eyebrow": "Les petits détails",
+    "title": "Des détails utiles\nau *quotidien*.",
+    "items": [
+      [
+        "Reprenez où vous en étiez",
+        "Rouvrez une vidéo pour retrouver votre position, également accessible depuis l’écran d’accueil."
+      ],
+      [
+        "Vos sous-titres, chargés automatiquement",
+        "Les fichiers du même dossier sont chargés et sélectionnés selon la langue. Aucune recherche ni aucun téléchargement de sous-titres."
+      ],
+      [
+        "Image par image",
+        "Les touches point et virgule permettent d’avancer ou de reculer d’une image."
+      ],
+      [
+        "Captures avec S",
+        "Appuyez sur S pour enregistrer l’image actuelle à l’endroit de votre choix."
+      ],
+      [
+        "Un vrai son multicanal",
+        "Sortie 5.1 et 7.1 sur les appareils compatibles, avec suivi des changements de sortie."
+      ],
+      [
+        "Votre lecteur par défaut",
+        "Associez vidéos, sons ou les deux dans une seule fenêtre, et revenez facilement en arrière."
+      ],
+      [
+        "Du volume en réserve",
+        "Amplifiez les enregistrements discrets jusqu’à 500%, avec protection des crêtes."
+      ],
+      [
+        "Plusieurs vidéos à la fois",
+        "Chaque vidéo dispose de sa propre fenêtre pour une lecture côte à côte."
+      ],
+      [
+        "17 langues",
+        "L’application et le site sont disponibles en 17 langues."
+      ]
+    ]
+  },
+  "closing": {
+    "eyebrow": "Quand vous voulez",
+    "title": "Khua Player.\nÀ vous de *lire*.",
+    "description": "Pour les Mac avec puce Apple sous macOS 14 ou ultérieur.",
+    "download": "Télécharger Khua Player"
+  },
+  "footer": {
+    "tagline": "Un lecteur macOS rapide, libre et respectueux de la vie privée.",
+    "issues": "Signaler un problème",
+    "license": "Licence",
+    "privacy": "Confidentialité"
+  },
+  "ui": {
+    "scroll": "Défiler",
+    "language": "Langue",
+    "playMotion": "Reprendre les animations",
+    "pauseMotion": "Suspendre les animations",
+    "skip": "Aller au contenu",
+    "home": "Accueil Khua Player",
+    "navigation": "Navigation principale",
+    "discover": "Découvrir Khua Player",
+    "formats": "Formats pris en charge",
+    "download": "Télécharger le dernier DMG de Khua Player"
+  },
+  "releases": {
+    "title": "Historique des versions",
+    "intro": "Téléchargez la dernière version ou consultez les précédentes. Tous les fichiers sont signés avec Developer ID et notariés par Apple.",
+    "note": "La mise à jour intégrée est disponible depuis la version 0.6.0. Les versions antérieures nécessitent une installation manuelle. Revenir à une ancienne version peut ne pas préserver les réglages récents.",
+    "loading": "Chargement des versions…",
+    "error": "Les versions sont indisponibles. Réessayez dans un instant.",
+    "latest": "Dernière version",
+    "build": "Build",
+    "back": "← Retour à Khua Player",
+    "source": "Code sur GitHub",
+    "englishNotes": "Les notes de cette version sont disponibles en anglais."
+  },
+  "releaseNotes": {
+    "0.6.1": [
+      "Les vérifications de mise à jour incluent un identifiant d’installation aléatoire pour dédupliquer les statistiques d’activité et de version.",
+      "Aucune requête supplémentaire, donnée de lecture, nouveau réglage ou dialogue d’autorisation. La vérification automatique reste activée par défaut.",
+      "Politique de confidentialité et résumé dans l’app mis à jour dans les 17 langues."
+    ],
+    "0.6.0": [
+      "Active les vérifications de mise à jour dans la version téléchargée directement.",
+      "Vérifie les signatures du flux de mise à jour et des paquets avant l’installation."
+    ],
+    "0.5.1": [
+      "L’app s’appelle Khua ; la fenêtre À propos affiche Khua Player.",
+      "Signature Developer ID et notarisation Apple, avec tickets agrafés à l’app et à l’image disque."
+    ]
+  }
+}

@@ -1,0 +1,244 @@
+{
+  "meta": {
+    "title": "Khua Player — Pemutar media yang dibuat untuk kecepatan",
+    "description": "Pemutar cepat dan sumber terbuka untuk Mac Apple silicon. Motion+, kecerahan tambahan, subtitel lokal, serta pemutaran berkas rusak atau belum lengkap jika memungkinkan."
+  },
+  "nav": [
+    "Performa",
+    "Berkas rusak",
+    "Peningkatan",
+    "Format",
+    "Subtitel",
+    "Lihat Cepat",
+    "Jejak bintang",
+    "Privasi",
+    "Sumber terbuka"
+  ],
+  "download": "Unduh",
+  "github": "Lihat di GitHub",
+  "compatibility": "Apple silicon · macOS 14 atau lebih baru",
+  "hero": {
+    "eyebrow": "Pemutar media sumber terbuka untuk macOS",
+    "title": "Pemutar\nuntuk *{}*.",
+    "rotating": [
+      "kecepatan",
+      "respons",
+      "kelancaran",
+      "efisiensi",
+      "performa"
+    ],
+    "description": "Klik dua kali, langsung diputar. MKV, MP4, HDR, 4K, bahkan video rusak atau yang masih diunduh, selama bisa dibaca. Ringan dan senyap, dibuat untuk Apple silicon.",
+    "download": "Unduh untuk macOS"
+  },
+  "performance": {
+    "title": "Untuk chip\ndi *Mac* Anda.",
+    "description": "Khua dirancang khusus untuk Apple silicon. Pada format yang didukung, mesin media khusus mendekode video dan mengirim bingkai langsung ke layar. Cepat dibuka, lancar memutar 4K dan HDR, sambil menyisakan sumber daya untuk pekerjaan lain.",
+    "note": "Hanya Apple silicon. Mac Intel tidak didukung.",
+    "facts": [
+      "Dekode video perangkat keras",
+      "Tampilan langsung dengan Metal",
+      "Pemutaran HDR dan 4K"
+    ],
+    "diagram": {
+      "heading": "Perjalanan satu bingkai ke layar",
+      "file": "Berkas Anda",
+      "zeroCopy": "Tanpa salinan",
+      "caption": "Pada format yang didukung, mesin media mendekode dan Metal menampilkan video. Bingkai tetap berada di memori bersama mesin media dan GPU, tanpa salinan perantara."
+    }
+  },
+  "boosts": {
+    "title": "Lebih mulus, lebih terang,\nlebih *cepat*.",
+    "description": "Motion+ memperhalus gerakan, Brightness+ mencerahkan gambar, dan Turbo mempercepat bagian yang lambat.",
+    "motion": {
+      "description": "Motion+ membuat bingkai perantara agar pergeseran kamera dan gerakan cepat lebih mulus. Saat aktif, tahan C untuk membandingkan gambar asli dan hasilnya berdampingan.",
+      "note": "Memerlukan macOS 26 dan Mac yang didukung. Untuk video hingga 4K pada kecepatan 1×. Saat Mac sibuk, mungkin hanya sebagian gambar yang diperhalus.",
+      "label": "Pemandangan malam bergerak: asli 24 fps di kiri, Motion+ 48 fps di kanan.",
+      "before": "Asli",
+      "after": "Interpolasi 2×",
+      "legendOriginal": "Bingkai asli",
+      "legendGenerated": "Bingkai buatan Motion+"
+    },
+    "brightness": {
+      "description": "Layar seperti XDR pada MacBook Pro bisa lebih terang daripada putih biasa. HDR sudah memakai ruang tambahan itu; Brightness+ juga memberikannya pada video SDR.",
+      "note": "Ilustrasi. Efek nyata membutuhkan layar dengan cadangan kecerahan tambahan.",
+      "label": "Adegan malam lebih redup tanpa Brightness+ dan lebih terang saat diaktifkan.",
+      "before": "Mati"
+    },
+    "turbo": {
+      "description": "Tahan Spasi saat memutar untuk kecepatan 2×; lepaskan untuk kembali normal. Nada suara tetap alami. Dapat diatur hingga 5×.",
+      "label": "Video diputar 2× selama tombol Spasi ditahan.",
+      "key": "Spasi",
+      "keyLabel": "Tahan untuk mencoba Turbo",
+      "hint": "Tekan dan tahan"
+    }
+  },
+  "resilience": {
+    "title": "Berkas rusak?\nCoba tetap *putar*.",
+    "description": "Unduhan terhenti, rekaman masih berjalan, atau bagian yang rusak: Khua mencoba memutar apa pun yang masih terbaca. Perbaikan dilakukan di memori tanpa mengubah berkas asli. Bagian yang tak bisa dipulihkan dilewati dan ditandai. Saat unduhan berlanjut, pemutaran mengikuti data yang masuk.",
+    "note": "Tidak semua berkas rusak bisa diputar. Khua menjelaskan alasannya jika gagal.",
+    "label": "Linimasa berwarna video: bagian rusak berwarna kuning dan merah, bagian belum diunduh abu-abu.",
+    "progress": "Mengunduh {p}%",
+    "done": "Unduhan selesai",
+    "playing": "Memutar",
+    "waiting": "Menunggu unduhan…",
+    "legend": [
+      "Dapat diputar sebagian",
+      "Tidak tersedia",
+      "Partikel abu-abu yang renggang belum diunduh"
+    ]
+  },
+  "subtitles": {
+    "eyebrow": "Subtitel di Mac Anda",
+    "title": "Tak ada subtitel?\nSekarang *ada*.",
+    "description": "Khua membuat subtitel dari audio video langsung di Mac, lalu menerjemahkan subtitel baru maupun teks yang sudah ada. Terjemahan tampil di atas teks asli. Baris muncul setelah siap dan hasilnya bisa disimpan sebagai SRT di samping video.",
+    "note": "Memerlukan macOS 26. Bahasa bergantung pada macOS; sistem mungkin mengunduh model bahasa saat pertama digunakan.",
+    "label": "Terjemahan bahasa Indonesia di atas baris asli bahasa Jepang.",
+    "status": "Transkripsi {p}% · subtitel siap hingga {t}",
+    "cues": [
+      "Ayo berangkat sebelum matahari terbit.",
+      "Jalan ke utara seharusnya masih terbuka.",
+      "Kalau begitu, kita harus bergegas."
+    ]
+  },
+  "formats": {
+    "title": "Berkas yang Anda punya,\nlangsung *putar*.",
+    "description": "MKV, MP4, MOV, WebM, AVI, MPEG-TS, FLV, WMV, dan format audio umum. Termasuk HDR, AV1, H.266 (VVC), ProRes, MXF, dan DNxHD. Subtitel tertanam dan berkas subtitel dalam folder yang sama dimuat otomatis, tanpa mencari atau mengunduh subtitel dari internet. Tanpa konversi atau paket codec tambahan."
+  },
+  "timeline": {
+    "title": "Linimasa berwarna\nseperti *video* Anda.",
+    "description": "Linimasa bawaan terdiri dari ribuan partikel. Warnanya diambil dari video dan kepadatannya mengikuti bitrate. Bagian yang sudah ditonton menjadi garis terang; sisanya tetap melayang. Partikel bersinar di dekat penunjuk, bahkan melebihi putih biasa pada layar XDR.",
+    "note": "Gaya Cair dan Klasik juga tersedia.",
+    "label": "Linimasa jejak bintang interaktif dengan warna video dan cahaya di sekitar penunjuk.",
+    "hint": "Arahkan penunjuk atau seret linimasa",
+    "switchLabel": "Gaya linimasa",
+    "styles": [
+      "Jejak bintang",
+      "Cair",
+      "Klasik"
+    ]
+  },
+  "quickLook": {
+    "title": "Tekan Spasi.\nTermasuk *MKV*.",
+    "description": "Pilih video yang didukung di Finder dan tekan Spasi untuk langsung memutarnya, termasuk MKV. Ekstensi Lihat Cepat Khua membawa mesin pemutarnya sendiri agar lebih banyak format bisa dipratinjau.",
+    "label": "Ilustrasi: pilih MKV di Finder dan tekan Spasi untuk memutarnya lewat Lihat Cepat.",
+    "folder": "Film",
+    "favorites": "Favorit",
+    "sidebar": [
+      "Desktop",
+      "Unduhan",
+      "Film",
+      "Dokumen"
+    ],
+    "key": "Spasi",
+    "openWith": "Buka dengan Khua"
+  },
+  "size": {
+    "eyebrow": "Dirancang ringan",
+    "title": "Ditutup, senyap.\nDibuka, *ringan*.",
+    "description": "Setelah Khua ditutup, tidak ada agen bar menu atau pembaru latar belakang yang tetap berjalan. Format yang didukung memakai mesin media untuk mengurangi beban CPU. Aplikasinya pun ringkas.",
+    "note": "Saat ini sekitar 20 MB."
+  },
+  "privacy": {
+    "title": "Media Anda tetap\ndi *Mac* Anda.",
+    "description": "Tanpa akun, iklan, atau pelacakan pemutaran. Video, riwayat, pembuatan dan penerjemahan subtitel tetap di Mac. Pemeriksaan pembaruan yang sudah ada mencakup statistik instalasi terbatas, tanpa permintaan tambahan atau data pemutaran. Rinciannya ada di kebijakan privasi.",
+    "action": "Baca kebijakan privasi"
+  },
+  "openSource": {
+    "title": "Sumber terbuka.\nLihat *sendiri*.",
+    "description": "Kode Khua Player tersedia di GitHub dengan lisensi MIT. Pelajari cara kerjanya, bangun sendiri, atau sumbangkan perbaikan. Laporan masalah dan ide juga disambut.",
+    "action": "Jelajahi di GitHub"
+  },
+  "details": {
+    "eyebrow": "Hal-hal kecil",
+    "title": "Detail untuk\nsetiap *hari*.",
+    "items": [
+      [
+        "Lanjutkan dari posisi terakhir",
+        "Buka kembali video di posisi sebelumnya, juga melalui layar sambutan."
+      ],
+      [
+        "Subtitel Anda dimuat otomatis",
+        "Subtitel dalam folder yang sama dimuat dan dipilih menurut bahasa. Tidak dicari atau diunduh dari internet."
+      ],
+      [
+        "Bingkai demi bingkai",
+        "Titik dan koma memindahkan satu bingkai maju atau mundur."
+      ],
+      [
+        "Tangkapan layar dengan S",
+        "Tekan S untuk menyimpan bingkai saat ini ke lokasi pilihan."
+      ],
+      [
+        "Suara multikanal asli",
+        "Keluaran 5.1 dan 7.1 pada perangkat yang didukung, mengikuti perubahan perangkat audio."
+      ],
+      [
+        "Pemutar bawaan Anda",
+        "Atur video, audio, atau keduanya dalam satu dialog dan batalkan dengan mudah."
+      ],
+      [
+        "Volume lebih besar",
+        "Perkuat rekaman pelan hingga 500%, dengan perlindungan puncak suara."
+      ],
+      [
+        "Beberapa video sekaligus",
+        "Setiap video punya jendelanya sendiri untuk diputar berdampingan."
+      ],
+      [
+        "17 bahasa",
+        "Aplikasi dan situs tersedia dalam 17 bahasa."
+      ]
+    ]
+  },
+  "closing": {
+    "eyebrow": "Kapan pun Anda siap",
+    "title": "Unduh Khua Player.\nTekan *putar*.",
+    "description": "Untuk Mac Apple silicon dengan macOS 14 atau lebih baru.",
+    "download": "Unduh Khua Player"
+  },
+  "footer": {
+    "tagline": "Pemutar macOS yang cepat, menjaga privasi, dan bersumber terbuka.",
+    "issues": "Laporkan masalah",
+    "license": "Lisensi",
+    "privacy": "Privasi"
+  },
+  "ui": {
+    "scroll": "Gulir",
+    "language": "Bahasa",
+    "playMotion": "Lanjutkan animasi",
+    "pauseMotion": "Jeda animasi",
+    "skip": "Lewati ke konten",
+    "home": "Beranda Khua Player",
+    "navigation": "Navigasi utama",
+    "discover": "Kenali Khua Player",
+    "formats": "Format yang didukung",
+    "download": "Unduh DMG Khua Player terbaru"
+  },
+  "releases": {
+    "title": "Riwayat versi",
+    "intro": "Unduh versi terbaru atau lihat versi sebelumnya. Semua unduhan ditandatangani dengan Developer ID dan dinotarisasi Apple.",
+    "note": "Pembaruan dalam aplikasi tersedia mulai 0.6.0. Versi lebih lama perlu satu kali pemasangan manual. Kembali ke versi lama mungkin tidak mempertahankan pengaturan baru.",
+    "loading": "Memuat versi…",
+    "error": "Informasi versi tidak tersedia. Muat ulang beberapa saat lagi.",
+    "latest": "Terbaru",
+    "build": "Build",
+    "back": "← Kembali ke Khua Player",
+    "source": "Kode di GitHub",
+    "englishNotes": "Catatan versi ini tersedia dalam bahasa Inggris."
+  },
+  "releaseNotes": {
+    "0.6.1": [
+      "Pemeriksaan pembaruan menyertakan pengenal instalasi acak untuk statistik aktivitas dan versi tanpa duplikasi.",
+      "Tanpa permintaan tambahan, pengumpulan data pemutaran, pengaturan baru, atau dialog izin. Pemeriksaan otomatis tetap aktif secara bawaan.",
+      "Kebijakan privasi dan ringkasan dalam aplikasi diperbarui dalam 17 bahasa."
+    ],
+    "0.6.0": [
+      "Mengaktifkan pemeriksaan pembaruan dalam versi unduhan langsung.",
+      "Memverifikasi tanda tangan feed pembaruan dan paket sebelum pemasangan."
+    ],
+    "0.5.1": [
+      "Nama aplikasi adalah Khua; jendela Mengenai menggunakan Khua Player.",
+      "Ditandatangani Developer ID dan dinotarisasi Apple, dengan tiket terlampir pada aplikasi dan citra disk."
+    ]
+  }
+}

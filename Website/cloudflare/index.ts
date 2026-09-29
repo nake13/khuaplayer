@@ -1,5 +1,6 @@
 import { CATALOG_KEY, parseCatalog } from "./catalog.ts";
 import { parseUpdateUsage, pruneUpdateUsage, recordUpdateUsage } from "./usage.ts";
+import { localeFromCountry } from "./locale.ts";
 
 const headers = {
   "Cache-Control": "no-store, no-transform",
@@ -15,6 +16,17 @@ export default {
     const error = (message: string, status: number) => new Response(head ? null : message, { status, headers });
     if (!head && request.method !== "GET") {
       return new Response("Method not allowed", { status: 405, headers: { ...headers, Allow: "GET, HEAD" } });
+    }
+    if (path === "/api/locale") {
+      // Use trusted edge metadata only. Do not accept a country/IP query or
+      // header, return location details, log a visitor, or touch R2/D1.
+      return new Response(head ? null : JSON.stringify({ locale: localeFromCountry(request.cf?.country) }), {
+        headers: {
+          ...headers, "Content-Type": "application/json; charset=utf-8",
+          "Cache-Control": "private, no-store, no-transform",
+          "CDN-Cache-Control": "no-store", "Cross-Origin-Resource-Policy": "same-origin",
+        },
+      });
     }
     if (!["/download", "/api/releases.json", "/updates/appcast.xml"].includes(path)) {
       return error("Not found", 404);

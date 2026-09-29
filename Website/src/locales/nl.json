@@ -1,0 +1,244 @@
+{
+  "meta": {
+    "title": "Khua Player — Een mediaspeler gebouwd voor snelheid",
+    "description": "Een snelle opensourcespeler voor Macs met Apple silicon. Motion+, extra helderheid, lokale ondertitels en waar mogelijk weergave van beschadigde of onvolledige bestanden."
+  },
+  "nav": [
+    "Prestaties",
+    "Beschadigde bestanden",
+    "Verbeteringen",
+    "Formaten",
+    "Ondertitels",
+    "Snelle weergave",
+    "Sterrenspoor",
+    "Privacy",
+    "Open source"
+  ],
+  "download": "Download",
+  "github": "Bekijk op GitHub",
+  "compatibility": "Apple silicon · macOS 14 of nieuwer",
+  "hero": {
+    "eyebrow": "Opensource-mediaspeler voor macOS",
+    "title": "Een speler\nvoor *{}*.",
+    "rotating": [
+      "snelheid",
+      "reactie",
+      "vloeiendheid",
+      "efficiëntie",
+      "prestaties"
+    ],
+    "description": "Dubbelklik en speel af. MKV, MP4, HDR, 4K, zelfs beschadigde of nog niet volledig gedownloade video's worden waar mogelijk afgespeeld. Licht en stil, speciaal voor Apple silicon.",
+    "download": "Download voor macOS"
+  },
+  "performance": {
+    "title": "Voor de chip\nin je *Mac*.",
+    "description": "Khua is speciaal voor Apple silicon gebouwd. Bij ondersteunde formaten decodeert de media-engine de video en gaan de beelden rechtstreeks naar het scherm. Snel openen, vloeiende 4K- en HDR-weergave en meer ruimte voor andere taken.",
+    "note": "Alleen Apple silicon. Intel-Macs worden niet ondersteund.",
+    "facts": [
+      "Hardwaredecodering",
+      "Directe weergave met Metal",
+      "HDR- en 4K-weergave"
+    ],
+    "diagram": {
+      "heading": "Hoe een beeld het scherm bereikt",
+      "file": "Je bestand",
+      "zeroCopy": "Zonder kopieën",
+      "caption": "Bij ondersteunde formaten decodeert de media-engine en verzorgt Metal de weergave. Beelden blijven in het gedeelde geheugen van media-engine en GPU, zonder tussentijdse kopieën."
+    }
+  },
+  "boosts": {
+    "title": "Vloeiender, helderder\nen *sneller*.",
+    "description": "Motion+ maakt beweging vloeiender, Brightness+ maakt het beeld helderder en Turbo helpt je door langzame stukken.",
+    "motion": {
+      "description": "Motion+ genereert tussenbeelden voor vloeiende camerabewegingen en snelle actie. Houd C ingedrukt terwijl het actief is om het origineel en het resultaat naast elkaar te vergelijken.",
+      "note": "Vereist macOS 26 en een ondersteunde Mac. Voor video's tot 4K op 1× snelheid. Bij hoge belasting kan slechts een deel van het beeld worden verbeterd.",
+      "label": "Nachtelijke camerabeweging: origineel met 24 fps links, Motion+ met 48 fps rechts.",
+      "before": "Origineel",
+      "after": "2× interpolatie",
+      "legendOriginal": "Originele beelden",
+      "legendGenerated": "Door Motion+ gemaakte beelden"
+    },
+    "brightness": {
+      "description": "Schermen zoals het XDR-scherm van de MacBook Pro kunnen helderder zijn dan normaal wit. HDR gebruikt die ruimte al; Brightness+ maakt haar ook beschikbaar voor SDR-video's.",
+      "note": "Illustratie. Het echte effect is alleen zichtbaar op een scherm met extra helderheidsruimte.",
+      "label": "Nachtscène: donkerder zonder Brightness+ en helderder met de functie aan.",
+      "before": "Uit"
+    },
+    "turbo": {
+      "description": "Houd tijdens het afspelen de spatiebalk ingedrukt voor 2× snelheid; laat los voor normaal tempo. Stemmen behouden hun toonhoogte. Instelbaar tot 5×.",
+      "label": "Een video versnelt naar 2× zolang de spatiebalk wordt ingedrukt.",
+      "key": "Spatie",
+      "keyLabel": "Houd ingedrukt om Turbo te proberen",
+      "hint": "Houd ingedrukt"
+    }
+  },
+  "resilience": {
+    "title": "Bestand kapot?\nKhua probeert *verder*.",
+    "description": "Een onderbroken download, een lopende opname of een beschadigd fragment: Khua probeert af te spelen wat nog leesbaar is. Reparaties gebeuren in het geheugen, zonder het origineel te wijzigen. Onherstelbare delen worden overgeslagen en gemarkeerd. Tijdens een download gaat de weergave verder zodra nieuwe gegevens binnenkomen.",
+    "note": "Niet elk beschadigd bestand is afspeelbaar. Khua legt uit wanneer het niet lukt.",
+    "label": "Tijdlijn in videokleuren: oranje en rode schadeplekken, grijze nog niet gedownloade delen.",
+    "progress": "Downloaden {p}%",
+    "done": "Download voltooid",
+    "playing": "Afspelen",
+    "waiting": "Wachten op download…",
+    "legend": [
+      "Deels afspeelbaar",
+      "Niet beschikbaar",
+      "Losse grijze deeltjes zijn nog niet gedownload"
+    ]
+  },
+  "subtitles": {
+    "eyebrow": "Ondertitels op je Mac",
+    "title": "Geen ondertitels?\nNu *wel*.",
+    "description": "Khua maakt ondertitels uit de audio, rechtstreeks op je Mac, en vertaalt nieuwe of bestaande tekstondertitels. De vertaling staat boven het origineel. Regels verschijnen zodra ze klaar zijn; het resultaat kun je als SRT naast de video bewaren.",
+    "note": "Vereist macOS 26. Talen hangen af van macOS; het systeem kan bij het eerste gebruik een taalmodel downloaden.",
+    "label": "Nederlandse vertaling boven de Japanse originele regel.",
+    "status": "Transcriberen {p}% · ondertitels klaar tot {t}",
+    "cues": [
+      "Laten we voor zonsopgang vertrekken.",
+      "De weg naar het noorden zou nog open moeten zijn.",
+      "Dan kunnen we beter opschieten."
+    ]
+  },
+  "formats": {
+    "title": "Je eigen bestanden.\nGewoon *afspelen*.",
+    "description": "MKV, MP4, MOV, WebM, AVI, MPEG-TS, FLV, WMV en gangbare audioformaten. Ook HDR, AV1, H.266 (VVC), ProRes, MXF en DNxHD. Ingebouwde ondertitels en bestanden in dezelfde map worden automatisch geladen; Khua zoekt of downloadt nooit ondertitels op internet. Geen conversie of extra codec-pakketten."
+  },
+  "timeline": {
+    "title": "Een tijdlijn\nin de kleuren van je *video*.",
+    "description": "Duizenden deeltjes vormen de standaardtijdlijn. Hun kleuren komen uit de video en hun dichtheid volgt de bitrate. Wat je hebt bekeken vormt een heldere lijn; de rest blijft zweven. Deeltjes lichten op bij de aanwijzer, op XDR-schermen zelfs helderder dan normaal wit.",
+    "note": "Ook de stijlen Vloeibaar en Klassiek zijn beschikbaar.",
+    "label": "Interactieve sterrentijdlijn in videokleuren met licht rond de aanwijzer.",
+    "hint": "Beweeg de aanwijzer of sleep over de tijdlijn",
+    "switchLabel": "Tijdlijnstijl",
+    "styles": [
+      "Sterrenspoor",
+      "Vloeibaar",
+      "Klassiek"
+    ]
+  },
+  "quickLook": {
+    "title": "Druk op Spatie.\nOok voor *MKV*.",
+    "description": "Selecteer een ondersteunde video in de Finder en druk op de spatiebalk. Meteen afspelen, ook MKV. Khuas extensie voor Snelle weergave heeft een eigen afspeelengine en maakt meer formaten bekijkbaar.",
+    "label": "Illustratie: selecteer een MKV in de Finder en druk op de spatiebalk voor Snelle weergave.",
+    "folder": "Films",
+    "favorites": "Favorieten",
+    "sidebar": [
+      "Bureaublad",
+      "Downloads",
+      "Films",
+      "Documenten"
+    ],
+    "key": "Spatie",
+    "openWith": "Open met Khua"
+  },
+  "size": {
+    "eyebrow": "Bewust licht",
+    "title": "Gesloten, stil.\nGeopend, *licht*.",
+    "description": "Na het sluiten blijven geen menubalkhulpen of achtergrond-updaters actief. Ondersteunde formaten gebruiken de media-engine om de CPU te ontzien. De app zelf blijft compact.",
+    "note": "Momenteel ongeveer 20 MB."
+  },
+  "privacy": {
+    "title": "Je media blijven\nop je *Mac*.",
+    "description": "Geen account, advertenties of afspeeltracking. Video's, kijkgeschiedenis en ondertitelverwerking blijven op je Mac. Bestaande updatecontroles bevatten beperkte installatiestatistieken, zonder extra verzoeken of afspeelgegevens. Meer uitleg staat in het privacybeleid.",
+    "action": "Lees het privacybeleid"
+  },
+  "openSource": {
+    "title": "Open source.\nKijk zelf *mee*.",
+    "description": "De broncode van Khua Player staat onder de MIT-licentie op GitHub. Bekijk hoe het werkt, bouw de app zelf of draag een oplossing aan. Foutmeldingen en ideeën zijn welkom.",
+    "action": "Ontdek op GitHub"
+  },
+  "details": {
+    "eyebrow": "De kleine dingen",
+    "title": "Details voor\nelke *dag*.",
+    "items": [
+      [
+        "Verder waar je was",
+        "Open de video opnieuw op je laatste positie, ook vanaf het welkomstscherm."
+      ],
+      [
+        "Je ondertitels automatisch geladen",
+        "Ondertitels in dezelfde map worden geladen en op taal geselecteerd. Geen online zoekacties of downloads."
+      ],
+      [
+        "Beeld voor beeld",
+        "Punt en komma gaan één beeld vooruit of achteruit."
+      ],
+      [
+        "Schermafbeeldingen met S",
+        "Druk op S om het huidige beeld op een gekozen locatie op te slaan."
+      ],
+      [
+        "Echt surroundgeluid",
+        "5.1- en 7.1-uitvoer op geschikte apparaten, ook bij het wisselen van uitgang."
+      ],
+      [
+        "Je standaardspeler",
+        "Koppel video, audio of beide in één venster en maak de keuze eenvoudig ongedaan."
+      ],
+      [
+        "Meer volume",
+        "Versterk zachte opnamen tot 500%, met piekbeveiliging."
+      ],
+      [
+        "Meer video's tegelijk",
+        "Elke video heeft een eigen venster voor weergave naast elkaar."
+      ],
+      [
+        "17 talen",
+        "De app en website zijn in 17 talen beschikbaar."
+      ]
+    ]
+  },
+  "closing": {
+    "eyebrow": "Wanneer jij wilt",
+    "title": "Download Khua Player.\nDruk op *play*.",
+    "description": "Voor Macs met Apple silicon en macOS 14 of nieuwer.",
+    "download": "Download Khua Player"
+  },
+  "footer": {
+    "tagline": "Een snelle, privacyvriendelijke opensourcespeler voor macOS.",
+    "issues": "Probleem melden",
+    "license": "Licentie",
+    "privacy": "Privacy"
+  },
+  "ui": {
+    "scroll": "Verder",
+    "language": "Taal",
+    "playMotion": "Animaties hervatten",
+    "pauseMotion": "Animaties pauzeren",
+    "skip": "Naar inhoud",
+    "home": "Khua Player startpagina",
+    "navigation": "Hoofdnavigatie",
+    "discover": "Ontdek Khua Player",
+    "formats": "Ondersteunde formaten",
+    "download": "Download de nieuwste Khua Player DMG"
+  },
+  "releases": {
+    "title": "Versiegeschiedenis",
+    "intro": "Download de nieuwste versie of bekijk eerdere uitgaven. Alle downloads zijn met Developer ID ondertekend en door Apple genotariseerd.",
+    "note": "Updates vanuit de app zijn beschikbaar vanaf 0.6.0. Oudere versies vereisen één handmatige installatie. Bij teruggaan naar een oude versie blijven nieuwere instellingen mogelijk niet behouden.",
+    "loading": "Versies laden…",
+    "error": "Versie-informatie niet beschikbaar. Vernieuw de pagina later.",
+    "latest": "Nieuwste",
+    "build": "Build",
+    "back": "← Terug naar Khua Player",
+    "source": "Broncode op GitHub",
+    "englishNotes": "Deze versie-informatie is beschikbaar in het Engels."
+  },
+  "releaseNotes": {
+    "0.6.1": [
+      "Bestaande updatecontroles bevatten een willekeurige installatiecode voor ontdubbelde activiteits- en versiestatistieken.",
+      "Geen extra verzoeken, afspeelgegevens, nieuwe instellingen of toestemmingsvensters. Automatische updatecontroles blijven standaard aan.",
+      "Privacybeleid en privacysamenvatting in de app bijgewerkt in alle 17 talen."
+    ],
+    "0.6.0": [
+      "Schakelt updatecontroles in voor de rechtstreeks gedownloade app.",
+      "Controleert de handtekeningen van updatefeeds en pakketten voor installatie."
+    ],
+    "0.5.1": [
+      "De app heet Khua; het infovenster gebruikt Khua Player.",
+      "Met Developer ID ondertekend en door Apple genotariseerd; tickets zijn aan zowel app als schijfkopie gehecht."
+    ]
+  }
+}

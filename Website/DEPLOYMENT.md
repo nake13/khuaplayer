@@ -3,7 +3,7 @@
 ## Services
 
 - `https://khua.app`: Workers Static Assets, worker `khua-web`.
-- `https://khua.app/releases`: bilingual release history.
+- `https://khua.app/releases`: release history in the app's 17 supported languages.
 - `https://khua.app/download`: uncached redirect to the current verified DMG.
 - `https://khua.app/api/releases.json`: current version and release history.
 - `https://khua.app/updates/appcast.xml`: the signed Sparkle stable feed.
@@ -29,12 +29,13 @@ npx wrangler whoami
 npm run build
 npm run check:worker
 npm run test:sites
+npm run test:i18n
 npm run test:releases
 npm run test:usage
 npx wrangler d1 migrations apply USAGE_DB --env staging --remote
 npx wrangler deploy --env staging --dry-run
 npx wrangler deploy --env staging
-# Inspect the staging site, downloads, JSON, signed feed, and language toggle.
+# Inspect the staging site, downloads, JSON, signed feed, and language picker.
 npx wrangler d1 migrations apply USAGE_DB --env production --remote
 npx wrangler deploy --env production
 ```
@@ -48,7 +49,50 @@ The source repository at `https://github.com/nake13/khuaplayer` is public.
 Source and issue links are always included in normal builds; no visibility
 environment variable is required. Shared GitHub destinations live in
 `src/repository.js`. Verify both links without GitHub authentication when
-changing them, and keep the English and Chinese open-source copy in sync.
+changing them, and keep all localized open-source copy in sync.
+
+## Website localization
+
+The homepage and release history share 17 complete locale files under
+`src/locales/`. Priority is explicit URL (`?lang=ja`), saved manual choice,
+browser language list, conservative country hint, then English. Regional
+variants map to the app's language set; Simplified and Traditional Chinese
+remain distinct. IP never overrides a matching browser language.
+
+Only a manual picker action writes `khua-site-manual-locale-v1`. Shared language
+links affect the current visit without overwriting that preference. The picker
+lists only the 17 actual languages and selects the displayed language; there is
+no Automatic option or detection setting. Without a manual or URL override,
+detection follows browser-language changes and keeps internal links free of
+inferred language parameters. Explicit links and manual selections still carry
+their language into release history.
+The old `khua-site-locale` key is ignored because it did not distinguish manual
+choices from guesses; old `?lang=zh` links remain supported. The app's selected
+language is not transmitted to or read by the website.
+
+Only when no browser language matches, the page requests `/api/locale` once,
+with a one-second deadline and no credentials/referrer. The existing Worker
+reads `request.cf.country` and returns only a supported locale or null. Unknown,
+anonymized or unlisted/multilingual regions (for example SG, CA, BE and CH)
+produce no suggestion. The endpoint uses private/no-store caching, never reads
+or writes D1/R2, and does not log IPs or location details. No new service,
+database, secret or migration is needed; only these fallback requests invoke
+the Worker. Timeouts and failures retain English; late responses cannot undo
+a subsequent user choice. Homepage/static-asset routing stays unchanged.
+
+`npm run test:i18n` also runs before every build. It checks exact parity with
+the app catalog, complete string keys, interpolation placeholders and release
+notes, preference transitions and optional-lookup races. Add translations to
+every locale when changing the copy. Keep headings natural and test long labels
+at desktop and phone widths. Built-in OS fonts are
+used; localization adds no translation service, tracking request or dependency.
+The privacy policy and license links explicitly identify their English text.
+
+Each locale includes website translations of published release notes. The
+English source must match `Distribution/notes/<version>.json` and the live
+catalog. New or changed releases show the original English notes with a local
+notice until translations are supplied; do not reuse stale translations.
+This presentation layer never changes signed feeds or R2 release metadata.
 
 ## Prepare a release
 

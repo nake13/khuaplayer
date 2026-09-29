@@ -1,0 +1,244 @@
+{
+  "meta": {
+    "title": "Khua Player — Ein Mediaplayer für Tempo",
+    "description": "Ein schneller, quelloffener Player für Macs mit Apple-Chip. Mit Motion+, mehr Helligkeit, lokalen Untertiteln und bestmöglicher Wiedergabe beschädigter oder unvollständiger Dateien."
+  },
+  "nav": [
+    "Leistung",
+    "Defekte Dateien",
+    "Verbesserungen",
+    "Formate",
+    "Untertitel",
+    "Übersicht",
+    "Sternspur",
+    "Datenschutz",
+    "Quellcode"
+  ],
+  "download": "Laden",
+  "github": "Auf GitHub ansehen",
+  "compatibility": "Apple-Chip · macOS 14 oder neuer",
+  "hero": {
+    "eyebrow": "Quelloffener Mediaplayer für macOS",
+    "title": "Ein Player.\nFür *{}*.",
+    "rotating": [
+      "Tempo",
+      "Direktheit",
+      "Fluss",
+      "Effizienz",
+      "Leistung"
+    ],
+    "description": "Doppelklicken und abspielen. MKV, MP4, HDR, 4K — selbst beschädigte oder noch nicht vollständig geladene Videos werden nach Möglichkeit wiedergegeben. Schlank und leise, für Apple-Chips gebaut.",
+    "download": "Für macOS laden"
+  },
+  "performance": {
+    "title": "Für den Chip\nin deinem *Mac*.",
+    "description": "Khua ist speziell für Apple-Chips entwickelt. Bei unterstützten Formaten decodiert die dedizierte Media Engine das Video; die Bilder gelangen direkt auf den Bildschirm. Schneller Start, flüssige 4K- und HDR-Wiedergabe und mehr Reserven für andere Aufgaben.",
+    "note": "Nur für Macs mit Apple-Chip. Intel-Macs werden nicht unterstützt.",
+    "facts": [
+      "Hardware-Decodierung",
+      "Direkte Metal-Ausgabe",
+      "HDR und 4K"
+    ],
+    "diagram": {
+      "heading": "Der Weg eines Bildes zum Bildschirm",
+      "file": "Deine Datei",
+      "zeroCopy": "Ohne Kopieren",
+      "caption": "Bei unterstützten Formaten decodiert die Media Engine, Metal übernimmt die Darstellung. Die Bilder bleiben im gemeinsamen Speicher von Media Engine und GPU — ohne zusätzliche Kopien."
+    }
+  },
+  "boosts": {
+    "title": "Flüssiger, heller\nund *schneller*.",
+    "description": "Motion+ glättet Bewegungen, Brightness+ erhöht die Helligkeit und Turbo beschleunigt langsame Passagen.",
+    "motion": {
+      "description": "Motion+ erzeugt Zwischenbilder für flüssige Schwenks und schnelle Bewegungen. Halte bei aktivierter Funktion C gedrückt, um Original und Ergebnis nebeneinander zu sehen.",
+      "note": "Erfordert macOS 26 und einen unterstützten Mac. Für Videos bis 4K bei 1× Geschwindigkeit. Bei hoher Auslastung werden eventuell nur Teile des Bildes verbessert.",
+      "label": "Nächtlicher Kameraschwenk: links das Original mit 24 fps, rechts Motion+ mit 48 fps.",
+      "before": "Original",
+      "after": "2× Zwischenbilder",
+      "legendOriginal": "Originalbilder",
+      "legendGenerated": "Von Motion+ erzeugte Bilder"
+    },
+    "brightness": {
+      "description": "Displays wie das XDR-Display des MacBook Pro können heller als normales Weiß leuchten. HDR nutzt diesen Spielraum bereits; Brightness+ macht ihn auch für SDR-Videos verfügbar.",
+      "note": "Illustration. Der tatsächliche Effekt setzt ein Display mit zusätzlicher Helligkeitsreserve voraus.",
+      "label": "Nachtszene: dunkler ohne Brightness+, heller mit aktivierter Funktion.",
+      "before": "Aus"
+    },
+    "turbo": {
+      "description": "Halte beim Abspielen die Leertaste für 2× Tempo; beim Loslassen geht es normal weiter. Stimmen behalten ihre Tonhöhe. Bis zu 5× ist einstellbar.",
+      "label": "Ein Video läuft bei gedrückter Leertaste mit 2× Geschwindigkeit.",
+      "key": "Leertaste",
+      "keyLabel": "Gedrückt halten und Turbo testen",
+      "hint": "Gedrückt halten"
+    }
+  },
+  "resilience": {
+    "title": "Datei beschädigt?\nMöglichst viel *abspielen*.",
+    "description": "Ein abgebrochener Download, eine laufende Aufnahme oder beschädigte Stellen: Khua spielt lesbare Inhalte nach Möglichkeit ab. Reparaturen erfolgen im Arbeitsspeicher, ohne die Originaldatei zu ändern. Nicht wiederherstellbare Abschnitte werden übersprungen und markiert. Bei laufenden Downloads geht es weiter, sobald neue Daten verfügbar sind.",
+    "note": "Nicht jede beschädigte Datei lässt sich abspielen. Wenn es nicht geht, erklärt Khua den Grund.",
+    "label": "Zeitleiste in Videofarben: gelbe und rote Schadstellen, graue noch nicht geladene Bereiche.",
+    "progress": "Download {p}%",
+    "done": "Download abgeschlossen",
+    "playing": "Wiedergabe",
+    "waiting": "Warten auf Download…",
+    "legend": [
+      "Teilweise abspielbar",
+      "Nicht verfügbar",
+      "Lockere graue Partikel sind noch nicht geladen"
+    ]
+  },
+  "subtitles": {
+    "eyebrow": "Untertitel auf deinem Mac",
+    "title": "Keine Untertitel?\nJetzt *schon*.",
+    "description": "Khua erstellt Untertitel aus dem Videoton direkt auf deinem Mac und übersetzt neue oder vorhandene Textuntertitel. Die Übersetzung steht über dem Original. Fertige Zeilen erscheinen sofort; das Ergebnis lässt sich als SRT neben dem Video speichern.",
+    "note": "Erfordert macOS 26. Sprachen hängen von macOS ab; beim ersten Mal muss das System eventuell ein Sprachmodell laden.",
+    "label": "Deutsche Übersetzung über der japanischen Originalzeile.",
+    "status": "Transkription {p}% · Untertitel bis {t}",
+    "cues": [
+      "Lass uns vor Sonnenaufgang aufbrechen.",
+      "Die Straße nach Norden müsste noch offen sein.",
+      "Dann sollten wir uns beeilen."
+    ]
+  },
+  "formats": {
+    "title": "Deine Dateien.\nEinfach *abspielen*.",
+    "description": "MKV, MP4, MOV, WebM, AVI, MPEG-TS, FLV, WMV und gängige Audioformate. Dazu HDR, AV1, H.266 (VVC), ProRes, MXF und DNxHD. Eingebettete Untertitel und Untertiteldateien im selben Ordner werden automatisch geladen, niemals im Internet gesucht oder heruntergeladen. Kein Konvertieren, keine zusätzlichen Codec-Pakete."
+  },
+  "timeline": {
+    "title": "Eine Zeitleiste\nin deinen *Videofarben*.",
+    "description": "Tausende Partikel bilden die Standardzeitleiste. Ihre Farben stammen aus dem Video, ihre Dichte folgt der Bitrate. Gesehene Abschnitte werden zur hellen Linie, der Rest schwebt weiter. Am Mauszeiger leuchten Partikel auf — auf XDR-Displays sogar heller als normales Weiß.",
+    "note": "Auch die Stile Flüssig und Klassisch sind verfügbar.",
+    "label": "Interaktive Sternspur-Zeitleiste in Videofarben mit Leuchten am Mauszeiger.",
+    "hint": "Maus bewegen oder auf der Zeitleiste ziehen",
+    "switchLabel": "Zeitleistenstil",
+    "styles": [
+      "Sternspur",
+      "Flüssig",
+      "Klassisch"
+    ]
+  },
+  "quickLook": {
+    "title": "Leertaste drücken.\nAuch bei *MKV*.",
+    "description": "Wähle im Finder ein unterstütztes Video und drücke die Leertaste. Schon läuft es — auch MKV. Khuas Erweiterung für „Übersicht“ bringt ihre eigene Wiedergabe-Engine mit und ermöglicht Vorschauen für weitere Formate.",
+    "label": "Illustration: MKV im Finder auswählen und mit der Leertaste in der Übersicht abspielen.",
+    "folder": "Filme",
+    "favorites": "Favoriten",
+    "sidebar": [
+      "Schreibtisch",
+      "Downloads",
+      "Filme",
+      "Dokumente"
+    ],
+    "key": "Leertaste",
+    "openWith": "Mit Khua öffnen"
+  },
+  "size": {
+    "eyebrow": "Bewusst schlank",
+    "title": "Geschlossen ruhig.\nGeöffnet *leicht*.",
+    "description": "Nach dem Schließen bleiben keine Menüleisten-Helfer oder Hintergrund-Updater aktiv. Unterstützte Formate nutzen die Media Engine statt die CPU zu belasten. Auch die App selbst bleibt kompakt.",
+    "note": "Derzeit etwa 20 MB."
+  },
+  "privacy": {
+    "title": "Deine Medien bleiben\nauf deinem *Mac*.",
+    "description": "Kein Konto, keine Werbung, keine Erfassung deiner Wiedergabe. Videos, Verlauf und Untertitelverarbeitung bleiben auf dem Mac. Bestehende Updateprüfungen enthalten begrenzte Installationsstatistiken — ohne zusätzliche Anfragen oder Wiedergabedaten. Details stehen in der Datenschutzerklärung.",
+    "action": "Datenschutzerklärung lesen"
+  },
+  "openSource": {
+    "title": "Offener Code.\nSelbst *nachsehen*.",
+    "description": "Der Quellcode von Khua Player steht unter der MIT-Lizenz auf GitHub. Sieh dir die Funktionsweise an, baue die App selbst oder steuere Verbesserungen bei. Fehlermeldungen und Ideen sind willkommen.",
+    "action": "Quellcode auf GitHub"
+  },
+  "details": {
+    "eyebrow": "Die kleinen Dinge",
+    "title": "Details für\njeden *Tag*.",
+    "items": [
+      [
+        "Dort weitermachen, wo du warst",
+        "Beim erneuten Öffnen geht es an der letzten Stelle weiter, auch über den Begrüßungsbildschirm."
+      ],
+      [
+        "Vorhandene Untertitel automatisch laden",
+        "Untertitel im Videoordner werden geladen und nach Sprache ausgewählt. Keine Suche und kein Download im Internet."
+      ],
+      [
+        "Bild für Bild",
+        "Punkt und Komma bewegen dich jeweils ein Bild vor oder zurück."
+      ],
+      [
+        "Screenshots mit S",
+        "S speichert das aktuelle Bild an einem frei gewählten Ort."
+      ],
+      [
+        "Echter Surround-Sound",
+        "5.1- und 7.1-Ausgabe auf unterstützten Audiogeräten, auch beim Wechsel des Ausgabegeräts."
+      ],
+      [
+        "Als Standardplayer festlegen",
+        "Videos, Audio oder beides in einem Dialog zuordnen und bei Bedarf wieder zurücksetzen."
+      ],
+      [
+        "Mehr Lautstärke",
+        "Leise Aufnahmen bis auf 500% verstärken, mit Schutz vor Pegelspitzen."
+      ],
+      [
+        "Mehrere Videos zugleich",
+        "Jedes Video hat sein eigenes Fenster und kann neben anderen laufen."
+      ],
+      [
+        "17 Sprachen",
+        "App und Website sind in 17 Sprachen verfügbar."
+      ]
+    ]
+  },
+  "closing": {
+    "eyebrow": "Bereit, wenn du es bist",
+    "title": "Khua Player laden.\n*Abspielen*.",
+    "description": "Für Macs mit Apple-Chip und macOS 14 oder neuer.",
+    "download": "Khua Player laden"
+  },
+  "footer": {
+    "tagline": "Ein schneller, datenschutzfreundlicher, quelloffener Player für macOS.",
+    "issues": "Problem melden",
+    "license": "Lizenz",
+    "privacy": "Datenschutz"
+  },
+  "ui": {
+    "scroll": "Weiter",
+    "language": "Sprache",
+    "playMotion": "Animationen fortsetzen",
+    "pauseMotion": "Animationen pausieren",
+    "skip": "Zum Inhalt",
+    "home": "Khua Player Startseite",
+    "navigation": "Hauptnavigation",
+    "discover": "Khua Player entdecken",
+    "formats": "Unterstützte Formate",
+    "download": "Neueste Khua Player DMG laden"
+  },
+  "releases": {
+    "title": "Versionsverlauf",
+    "intro": "Lade die neueste Version oder stöbere in früheren Veröffentlichungen. Alle Downloads sind mit Developer ID signiert und von Apple notarisiert.",
+    "note": "Updates in der App gibt es ab 0.6.0. Ältere Versionen müssen einmal manuell aktualisiert werden. Bei einem Downgrade bleiben neuere Einstellungen möglicherweise nicht erhalten.",
+    "loading": "Versionen werden geladen…",
+    "error": "Versionsinformationen nicht verfügbar. Bitte später erneut laden.",
+    "latest": "Aktuell",
+    "build": "Build",
+    "back": "← Zurück zu Khua Player",
+    "source": "Quellcode auf GitHub",
+    "englishNotes": "Diese Versionshinweise sind auf Englisch verfügbar."
+  },
+  "releaseNotes": {
+    "0.6.1": [
+      "Bestehende Updateprüfungen enthalten eine zufällige Installationskennung für deduplizierte Aktivitäts- und Versionsstatistiken.",
+      "Keine zusätzlichen Anfragen, Wiedergabedaten, neuen Einstellungen oder Berechtigungsdialoge. Automatische Updateprüfungen bleiben standardmäßig aktiv.",
+      "Datenschutzerklärung und Hinweise in der App in allen 17 Sprachen aktualisiert."
+    ],
+    "0.6.0": [
+      "Aktiviert Updateprüfungen in der direkt heruntergeladenen App.",
+      "Prüft die Signaturen von Updatefeeds und Paketen vor der Installation."
+    ],
+    "0.5.1": [
+      "Der App-Name lautet Khua, im Infofenster steht Khua Player.",
+      "Mit Developer ID signiert und von Apple notarisiert; die Tickets sind an App und Disk-Image angeheftet."
+    ]
+  }
+}

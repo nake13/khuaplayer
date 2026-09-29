@@ -1,0 +1,244 @@
+{
+  "meta": {
+    "title": "Khua Player — Hız için tasarlanmış medya oynatıcı",
+    "description": "Apple çipli Mac'ler için hızlı, açık kaynaklı oynatıcı. Motion+, ek parlaklık, yerel altyazılar ve mümkün olduğunda bozuk veya eksik dosyaları oynatma."
+  },
+  "nav": [
+    "Performans",
+    "Bozuk dosyalar",
+    "İyileştirmeler",
+    "Biçimler",
+    "Altyazılar",
+    "Hızlı Bakış",
+    "Yıldız izi",
+    "Gizlilik",
+    "Açık kaynak"
+  ],
+  "download": "İndir",
+  "github": "GitHub'da görüntüle",
+  "compatibility": "Apple çip · macOS 14 veya üzeri",
+  "hero": {
+    "eyebrow": "macOS için açık kaynaklı medya oynatıcı",
+    "title": "Bir oynatıcı.\nÖnce *{}*.",
+    "rotating": [
+      "hız",
+      "tepki",
+      "akıcılık",
+      "verim",
+      "güç"
+    ],
+    "description": "Çift tıklayın, oynasın. MKV, MP4, HDR, 4K; okunabildiği sürece bozuk veya hâlâ indirilen videolar bile. Apple çipler için hafif ve sessiz bir uygulama.",
+    "download": "macOS için indir"
+  },
+  "performance": {
+    "title": "Mac'inizin çipi\niçin *tasarlandı*.",
+    "description": "Khua yalnızca Apple çipler için tasarlandı. Desteklenen biçimlerde özel medya motoru videoyu çözer ve kareler doğrudan ekrana gider. Hızlı açılış, akıcı 4K ve HDR, diğer işleriniz için daha fazla kaynak bırakır.",
+    "note": "Yalnızca Apple çipli Mac'ler. Intel Mac desteklenmez.",
+    "facts": [
+      "Donanımsal video çözme",
+      "Metal ile doğrudan görüntüleme",
+      "HDR ve 4K oynatma"
+    ],
+    "diagram": {
+      "heading": "Bir karenin ekrana yolculuğu",
+      "file": "Dosyanız",
+      "zeroCopy": "Kopyalamadan",
+      "caption": "Desteklenen biçimlerde medya motoru çözer, Metal görüntüler. Kareler medya motoru ve GPU'nun paylaştığı bellekte kalır; arada kopyalanmaz."
+    }
+  },
+  "boosts": {
+    "title": "Daha akıcı, daha parlak,\ndaha *hızlı*.",
+    "description": "Motion+ hareketi akıcı kılar, Brightness+ görüntüyü aydınlatır, Turbo yavaş bölümleri hızlandırır.",
+    "motion": {
+      "description": "Motion+, kamera kaydırmalarını ve hızlı hareketleri yumuşatmak için ara kareler üretir. Açıkken C'yi basılı tutarak orijinal ve sonucu yan yana karşılaştırın.",
+      "note": "macOS 26 ve desteklenen bir Mac gerekir. 1× hızda, 4K'ya kadar videolar içindir. Mac meşgulse görüntünün yalnızca bir kısmı iyileştirilebilir.",
+      "label": "Gece sokak panoraması: solda orijinal 24 fps, sağda Motion+ 48 fps.",
+      "before": "Orijinal",
+      "after": "2× ara kare",
+      "legendOriginal": "Orijinal kareler",
+      "legendGenerated": "Motion+ tarafından üretilen kareler"
+    },
+    "brightness": {
+      "description": "MacBook Pro'nun XDR ekranı gibi ekranlar normal beyazdan daha parlak olabilir. HDR bu payı zaten kullanır; Brightness+ bunu SDR videolara da açar.",
+      "note": "Temsilî görseldir. Gerçek etki, ek parlaklık payı olan bir ekran gerektirir.",
+      "label": "Gece sahnesi: Brightness+ kapalıyken daha karanlık, açıkken daha parlak.",
+      "before": "Kapalı"
+    },
+    "turbo": {
+      "description": "Oynatırken Boşluk'u basılı tutun: 2× hız. Bırakınca normale döner. Seslerin perdesi değişmez. 5× hıza kadar ayarlanabilir.",
+      "label": "Boşluk basılı tutulduğunda 2× hızlanan video.",
+      "key": "Boşluk",
+      "keyLabel": "Turbo'yu denemek için basılı tutun",
+      "hint": "Basılı tutun"
+    }
+  },
+  "resilience": {
+    "title": "Dosya bozuk mu?\nYine de *deneyin*.",
+    "description": "Yarım kalan indirme, devam eden kayıt, bozuk bir bölüm: Khua okunabilen içeriği oynatmaya çalışır. Orijinal dosyayı değiştirmeden bellekte onarır; kurtarılamayan kısımları atlar ve zaman çizelgesinde işaretler. İndirme sürerken yeni veriler geldikçe oynatmaya devam eder.",
+    "note": "Her bozuk dosya oynatılamaz. Khua başarısız olduğunda nedenini açıklar.",
+    "label": "Video renklerinde zaman çizelgesi: sarı ve kırmızı hasarlı bölümler, gri henüz indirilmeyen bölümler.",
+    "progress": "İndiriliyor {p}%",
+    "done": "İndirme tamamlandı",
+    "playing": "Oynatılıyor",
+    "waiting": "İndirme bekleniyor…",
+    "legend": [
+      "Kısmen oynatılabilir",
+      "Kullanılamıyor",
+      "Seyrek gri parçacıklar henüz indirilmedi"
+    ]
+  },
+  "subtitles": {
+    "eyebrow": "Mac'inizde altyazılar",
+    "title": "Altyazı yok mu?\nArtık *var*.",
+    "description": "Khua videonun sesinden Mac'inizde altyazı üretir; yeni veya mevcut metin altyazılarını çevirir. Çeviri orijinalin üstünde görünür. Satırlar hazır oldukça gösterilir, sonuç videonun yanına SRT olarak kaydedilebilir.",
+    "note": "macOS 26 gerekir. Diller macOS'e bağlıdır; sistem ilk kullanımda dil modeli indirebilir.",
+    "label": "Japonca orijinal satırın üzerinde Türkçe çeviri.",
+    "status": "Yazıya dökülüyor {p}% · altyazılar {t} noktasına kadar hazır",
+    "cues": [
+      "Güneş doğmadan yola çıkalım.",
+      "Kuzeye giden yol hâlâ açık olmalı.",
+      "O zaman acele etsek iyi olur."
+    ]
+  },
+  "formats": {
+    "title": "Elinizdeki dosyaları\nhemen *oynatın*.",
+    "description": "MKV, MP4, MOV, WebM, AVI, MPEG-TS, FLV, WMV ve yaygın ses biçimleri. HDR, AV1, H.266 (VVC), ProRes, MXF ve DNxHD de desteklenir. Gömülü ve aynı klasördeki altyazılar otomatik yüklenir; internetten altyazı aranmaz veya indirilmez. Dönüştürme ya da ek codec paketi gerekmez."
+  },
+  "timeline": {
+    "title": "Zaman çizelgesi,\nvideonuzun *renklerinde*.",
+    "description": "Varsayılan zaman çizelgesi binlerce parçacıktan oluşur. Renkler videodan, yoğunluk bit hızından gelir. İzlenen bölüm parlak bir çizgiye dönüşür, ilerisi süzülmeye devam eder. Parçacıklar imlecin yanında parlar; XDR ekranlarda normal beyazı aşabilir.",
+    "note": "Sıvı ve Klasik stiller de kullanılabilir.",
+    "label": "Video renklerinde, imleç yanında parlayan etkileşimli yıldız izi zaman çizelgesi.",
+    "hint": "İmleci hareket ettirin veya zaman çizelgesini sürükleyin",
+    "switchLabel": "Zaman çizelgesi stili",
+    "styles": [
+      "Yıldız izi",
+      "Sıvı",
+      "Klasik"
+    ]
+  },
+  "quickLook": {
+    "title": "Boşluk'a basın.\n*MKV* için bile.",
+    "description": "Finder'da desteklenen bir video seçip Boşluk'a basın; MKV dahil hemen oynasın. Khua'nın Hızlı Bakış genişletmesi kendi oynatma motoruyla daha fazla biçimi önizler.",
+    "label": "Örnek: Finder'da MKV seçip Boşluk ile Hızlı Bakış'ta oynatma.",
+    "folder": "Filmler",
+    "favorites": "Favoriler",
+    "sidebar": [
+      "Masaüstü",
+      "İndirilenler",
+      "Filmler",
+      "Belgeler"
+    ],
+    "key": "Boşluk",
+    "openWith": "Khua ile aç"
+  },
+  "size": {
+    "eyebrow": "Tasarımı gereği hafif",
+    "title": "Kapalıyken sessiz.\nAçıkken *hafif*.",
+    "description": "Khua kapatıldığında menü çubuğu yardımcıları veya arka plan güncelleyicileri çalışmaz. Desteklenen biçimler medya motorunu kullanarak CPU yükünü azaltır. Uygulamanın kendisi de küçüktür.",
+    "note": "Şu anda yaklaşık 20 MB."
+  },
+  "privacy": {
+    "title": "Medyanız\nMac'inizde *kalır*.",
+    "description": "Hesap, reklam ve oynatma takibi yok. Videolar, geçmiş ve altyazı işlemleri Mac'inizde kalır. Mevcut güncelleme kontrolleri sınırlı kurulum istatistikleri içerir; ek istek veya oynatma verisi gönderilmez. Ayrıntılar gizlilik politikasındadır.",
+    "action": "Gizlilik politikasını okuyun"
+  },
+  "openSource": {
+    "title": "Açık kaynak.\nKendiniz *inceleyin*.",
+    "description": "Khua Player'ın kaynak kodu MIT lisansıyla GitHub'da. Nasıl çalıştığını inceleyin, derleyin veya düzeltme gönderin. Hata bildirimleri ve fikirler de memnuniyetle karşılanır.",
+    "action": "GitHub'da keşfedin"
+  },
+  "details": {
+    "eyebrow": "Küçük ayrıntılar",
+    "title": "Her gün hissedilen\n*ayrıntılar*.",
+    "items": [
+      [
+        "Kaldığınız yerden devam",
+        "Videoyu yeniden açınca son konumdan devam edin; karşılama ekranından da erişebilirsiniz."
+      ],
+      [
+        "Mevcut altyazılarınız yüklenir",
+        "Aynı klasördeki altyazılar dile göre seçilir. İnternette aranmaz veya indirilmez."
+      ],
+      [
+        "Kare kare",
+        "Nokta ve virgül tuşlarıyla bir kare ileri veya geri gidin."
+      ],
+      [
+        "S ile ekran görüntüsü",
+        "S'ye basıp geçerli kareyi seçtiğiniz yere kaydedin."
+      ],
+      [
+        "Gerçek çevresel ses",
+        "Uyumlu cihazlarda 5.1 ve 7.1 çıkış, ses çıkışı değişikliklerine uyum."
+      ],
+      [
+        "Varsayılan oynatıcınız",
+        "Videoyu, sesi veya ikisini tek pencerede ilişkilendirin; kolayca geri alın."
+      ],
+      [
+        "Daha fazla ses",
+        "Sessiz kayıtları tepe korumasıyla %500'e kadar yükseltin."
+      ],
+      [
+        "Birden fazla video",
+        "Her video bağımsız bir pencerede yan yana oynatılabilir."
+      ],
+      [
+        "17 dil",
+        "Uygulama ve web sitesi 17 dilde kullanılabilir."
+      ]
+    ]
+  },
+  "closing": {
+    "eyebrow": "Hazır olduğunuzda",
+    "title": "Khua Player'ı indirin.\n*Oynatın*.",
+    "description": "macOS 14 veya üzeri kullanan Apple çipli Mac'ler için.",
+    "download": "Khua Player'ı indir"
+  },
+  "footer": {
+    "tagline": "macOS için hızlı, gizliliğe önem veren, açık kaynaklı oynatıcı.",
+    "issues": "Sorun bildir",
+    "license": "Lisans",
+    "privacy": "Gizlilik"
+  },
+  "ui": {
+    "scroll": "Kaydır",
+    "language": "Dil",
+    "playMotion": "Animasyonları sürdür",
+    "pauseMotion": "Animasyonları duraklat",
+    "skip": "İçeriğe geç",
+    "home": "Khua Player ana sayfa",
+    "navigation": "Ana gezinme",
+    "discover": "Khua Player'ı keşfedin",
+    "formats": "Desteklenen biçimler",
+    "download": "En yeni Khua Player DMG'sini indir"
+  },
+  "releases": {
+    "title": "Sürüm geçmişi",
+    "intro": "Son sürümü indirin veya önceki sürümleri inceleyin. Tüm indirmeler Developer ID ile imzalanmış ve Apple tarafından noter onayı almıştır.",
+    "note": "Uygulama içi güncellemeler 0.6.0 ile başlar. Daha eski sürümler bir kez elle kurulum gerektirir. Eski sürüme dönüşte yeni ayarlar korunmayabilir.",
+    "loading": "Sürümler yükleniyor…",
+    "error": "Sürüm bilgisi alınamıyor. Biraz sonra yenileyin.",
+    "latest": "En yeni",
+    "build": "Derleme",
+    "back": "← Khua Player'a dön",
+    "source": "GitHub'daki kaynak",
+    "englishNotes": "Bu sürümün notları İngilizce olarak sunuluyor."
+  },
+  "releaseNotes": {
+    "0.6.1": [
+      "Mevcut güncelleme kontrolleri, tekrarsız etkinlik ve sürüm istatistikleri için rastgele kurulum kimliği içerir.",
+      "Ek istek, oynatma verisi toplama, yeni ayar veya izin penceresi yoktur. Otomatik güncelleme kontrolleri varsayılan olarak açık kalır.",
+      "Gizlilik politikası ve uygulama içi gizlilik özeti 17 dilde güncellendi."
+    ],
+    "0.6.0": [
+      "Doğrudan indirilen sürümde uygulama içi güncelleme kontrolünü etkinleştirir.",
+      "Kurulumdan önce güncelleme akışının ve paketlerinin imzalarını doğrular."
+    ],
+    "0.5.1": [
+      "Uygulama adı Khua, Hakkında penceresindeki ad Khua Player olarak kullanılır.",
+      "Developer ID imzası ve Apple noter onayı tamamlandı; onay biletleri uygulamaya ve disk görüntüsüne eklendi."
+    ]
+  }
+}

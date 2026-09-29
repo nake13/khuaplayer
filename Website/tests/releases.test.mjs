@@ -2,6 +2,7 @@ import assert from "node:assert/strict";
 import test from "node:test";
 import { artifactKey, parseCatalog, parseRelease, renderAppcast } from "../cloudflare/catalog.ts";
 import worker from "../cloudflare/index.ts";
+import { localeFromCountry } from "../cloudflare/locale.ts";
 
 const release = {
   version: "0.6.0", build: 10, releasedAt: "2026-09-28T00:00:00Z",
@@ -24,6 +25,23 @@ const env = {
   },
   ASSETS: { fetch: async () => new Response("site") },
 };
+
+test("locale hints use only trusted country metadata and never require storage bindings", async () => {
+  for (const [country, locale] of Object.entries({ CN: "zh-Hans", TW: "zh-Hant", HK: "zh-Hant", JP: "ja", BR: "pt", SG: null, CA: null, CH: null, BE: null, T1: null, XX: null })) {
+    const request = new Request("https://khua.app/api/locale?country=DE", { headers: { "CF-IPCountry": "FR", "X-Forwarded-For": "192.0.2.1" } });
+    Object.defineProperty(request, "cf", { value: { country } });
+    const response = await worker.fetch(request, {});
+    assert.deepEqual(await response.json(), { locale });
+    assert.match(response.headers.get("cache-control"), /private.*no-store/);
+    assert.equal(response.headers.get("cdn-cache-control"), "no-store");
+    assert.equal(response.headers.get("cross-origin-resource-policy"), "same-origin");
+    assert.equal(response.headers.get("access-control-allow-origin"), null);
+  }
+  for (const country of [undefined, null, "", "__proto__", "constructor", {}, "JP,FR"]) assert.equal(localeFromCountry(country), null);
+  assert.deepEqual(await (await worker.fetch(new Request("https://khua.app/api/locale"), {})).json(), { locale: null });
+  assert.equal(await (await worker.fetch(new Request("https://khua.app/api/locale", { method: "HEAD" }), {})).text(), "");
+  assert.equal((await worker.fetch(new Request("https://khua.app/api/locale", { method: "POST" }), {})).status, 405);
+});
 
 test("catalog validates its latest identity and strips private metadata", () => {
   const result = parseCatalog({ ...catalog, privatePath: "/private/not-public" });

@@ -5,11 +5,14 @@ import {
   Crosshair,
   DownloadSimple,
   GithubLogo,
-  GlobeSimple,
   Pause,
   Play,
 } from "@phosphor-icons/react";
-import { content, defaultLocale } from "./content.js";
+import { content } from "./content.js";
+import { localeClass, localeHref } from "./locales/registry.js";
+import { useLocale, setPageMetadata } from "./useLocale.js";
+import { LanguagePicker } from "./LanguagePicker.jsx";
+import { useFitHeadline } from "./useFitHeadline.js";
 import { ParticleField } from "./ParticleField.jsx";
 import { DURATIONS, StarTrail, formatTime } from "./StarTrail.jsx";
 import { SubtitleDemo } from "./SubtitleDemo.jsx";
@@ -22,15 +25,6 @@ const REPOSITORY_URL = repositoryUrl;
 const DOWNLOAD_URL = import.meta.env.VITE_DOWNLOAD_URL || "/download";
 const PRIVACY_URL = "/privacy.txt";
 const LICENSE_URL = "/license.txt";
-
-function getInitialLocale() {
-  try {
-    const savedLocale = window.localStorage.getItem("khua-site-locale");
-    return savedLocale === "zh" || savedLocale === "en" ? savedLocale : defaultLocale;
-  } catch {
-    return defaultLocale;
-  }
-}
 
 function ExternalLink({ href, className = "", children, label }) {
   return (
@@ -79,10 +73,13 @@ function RotatingWord({ words, paused }) {
     remeasure();
     document.fonts?.ready?.then(remeasure).catch(() => {});
     window.addEventListener("resize", remeasure);
+    const observer = new ResizeObserver(measure);
+    Array.from(ref.current?.children ?? []).forEach(word => observer.observe(word));
     return () => {
       cancelled = true;
       if (frame) window.cancelAnimationFrame(frame);
       window.removeEventListener("resize", remeasure);
+      observer.disconnect();
     };
   }, [words]);
 
@@ -278,7 +275,7 @@ function BrandIcon({ className = "", eager = false }) {
 }
 
 export function App() {
-  const [locale, setLocale] = useState(getInitialLocale);
+  const [locale, setLocale, language] = useLocale();
   const [motionPaused, setMotionPaused] = useState(() =>
     window.matchMedia?.("(prefers-reduced-motion: reduce)").matches ?? false,
   );
@@ -291,20 +288,14 @@ export function App() {
   const trailStageRef = useRef(null);
   const trailTimeRef = useRef(null);
   const trailPreviewRef = useRef(null);
+  const heroTitleRef = useRef(null);
+  useFitHeadline(heroTitleRef, locale);
   const t = useMemo(() => content[locale], [locale]);
-  const isChinese = locale === "zh";
+  const isChinese = locale.startsWith("zh-");
 
   useEffect(() => {
-    document.documentElement.lang = isChinese ? "zh-Hans" : "en";
-    document.title = t.meta.documentTitle;
-    const description = t.meta.description;
-    document.querySelector('meta[name="description"]')?.setAttribute("content", description);
-    try {
-      window.localStorage.setItem("khua-site-locale", locale);
-    } catch {
-      // The page still works when storage is unavailable.
-    }
-  }, [isChinese, locale, t.meta.description, t.meta.documentTitle]);
+    setPageMetadata(t.meta.documentTitle, t.meta.description);
+  }, [t.meta.description, t.meta.documentTitle]);
 
   useEffect(() => {
     const revealItems = document.querySelectorAll("[data-reveal]");
@@ -451,14 +442,7 @@ export function App() {
     };
   }, [motionPaused, locale]);
 
-  const switchLocale = () => setLocale((current) => (current === "en" ? "zh" : "en"));
-  const motionLabel = isChinese
-    ? motionPaused
-      ? "继续动效"
-      : "暂停动效"
-    : motionPaused
-      ? "Play motion"
-      : "Pause motion";
+  const motionLabel = motionPaused ? t.ui.playMotion : t.ui.pauseMotion;
   const heroLabel = useMemo(
     () =>
       t.hero.title
@@ -467,14 +451,12 @@ export function App() {
         .replace(/\n/g, isChinese ? "" : " "),
     [isChinese, t.hero.rotating, t.hero.title],
   );
-  const downloadLabel = isChinese
-    ? "下载最新的 Khua Player DMG 安装包"
-    : "Download the latest Khua Player DMG";
+  const downloadLabel = t.ui.download;
 
   return (
-    <div className={`site-shell locale-${locale} ${motionPaused ? "motion-paused" : ""}`}>
+    <div className={`site-shell ${localeClass(locale)} ${motionPaused ? "motion-paused" : ""}`}>
       <a className="skip-link" href="#main-content">
-        {isChinese ? "跳到主要内容" : "Skip to content"}
+        {t.ui.skip}
       </a>
       <div aria-hidden="true" className="grain" />
       <div aria-hidden="true" className="scroll-progress">
@@ -482,12 +464,12 @@ export function App() {
       </div>
 
       <header className={`site-header ${headerDark ? "is-dark" : ""}`}>
-        <a aria-label={isChinese ? "Khua Player 首页" : "Khua Player home"} className="wordmark" href="#top">
+        <a aria-label={t.ui.home} className="wordmark" href="#top">
           <BrandIcon eager />
           <span>{t.nav.brand}</span>
         </a>
 
-        <nav aria-label={isChinese ? "主要导航" : "Main navigation"} className="main-nav">
+        <nav aria-label={t.ui.navigation} className="main-nav">
           {t.nav.links.map((link) => (
             <a href={`#${link.target}`} key={link.target}>
               {link.label}
@@ -506,15 +488,7 @@ export function App() {
           >
             {motionPaused ? <Play aria-hidden="true" /> : <Pause aria-hidden="true" />}
           </button>
-          <button
-            aria-label={isChinese ? "Switch to English" : "切换为简体中文"}
-            className="language-control"
-            onClick={switchLocale}
-            type="button"
-          >
-            <GlobeSimple aria-hidden="true" />
-            <span>{t.nav.languageToggle}</span>
-          </button>
+          <LanguagePicker locale={locale} onChange={setLocale} label={t.ui.language} />
           <ExternalLink className="header-download" href={DOWNLOAD_URL} label={downloadLabel}>
             <span>{t.nav.primaryAction}</span>
             <ArrowUpRight aria-hidden="true" />
@@ -529,8 +503,8 @@ export function App() {
           <div className="hero-copy">
             <div className="hero-copy-motion">
               <Eyebrow index="00">{t.hero.eyebrow}</Eyebrow>
-              <h1 aria-label={heroLabel} data-reveal>
-                <Headline paused={motionPaused} rotating={t.hero.rotating} text={t.hero.title} />
+              <h1 ref={heroTitleRef} aria-label={heroLabel} data-reveal>
+                <Headline key={locale} paused={motionPaused} rotating={t.hero.rotating} text={t.hero.title} />
               </h1>
               <div className="hero-bottom" data-reveal>
                 <p>{t.hero.description}</p>
@@ -546,7 +520,7 @@ export function App() {
                   </ExternalLink>
                 </div>
                 <span className="compatibility">{t.hero.compatibility}</span>
-                <ReleaseBadge locale={locale} />
+                <ReleaseBadge locale={locale} linkLocale={language.linkLocale} />
               </div>
               </div>
 
@@ -555,8 +529,8 @@ export function App() {
             </div>
           </div>
 
-          <a aria-label={isChinese ? "继续了解 Khua Player" : "Discover Khua Player"} className="scroll-cue" href="#performance">
-            <span>{isChinese ? "向下" : "Scroll"}</span>
+          <a aria-label={t.ui.discover} className="scroll-cue" href="#performance">
+            <span>{t.ui.scroll}</span>
             <ArrowDown aria-hidden="true" />
           </a>
         </section>
@@ -668,7 +642,7 @@ export function App() {
               <p>{t.formats.description}</p>
             </div>
           </div>
-          <ul aria-label={isChinese ? "支持的格式" : "Supported formats"} className="format-tokens" data-reveal>
+          <ul aria-label={t.ui.formats} className="format-tokens" data-reveal>
             {t.formats.tokens.map((token, index) => (
               <li key={token} style={{ "--i": index }}>
                 {token}
@@ -799,7 +773,7 @@ export function App() {
             <div className="feature-copy" data-reveal>
               <p>{t.privacy.description}</p>
               <ExternalLink className="text-link text-link-light feature-link" href={PRIVACY_URL}>
-                <span>{t.privacy.action}</span>
+                <span>{t.privacy.action} <small lang="en">(English)</small></span>
                 <ArrowUpRight aria-hidden="true" />
               </ExternalLink>
             </div>
@@ -892,11 +866,11 @@ export function App() {
         <div className="footer-meta">
           <span>{t.footer.compatibility}</span>
           <div className="footer-links">
-            <a href="/releases">{isChinese ? "版本记录" : "Releases"}</a>
+            <a href={localeHref("/releases", language.linkLocale)}>{t.releases.title}</a>
             <ExternalLink href={REPOSITORY_URL}>{t.footer.links.source}</ExternalLink>
             <ExternalLink href={repositoryIssuesUrl}>{t.footer.links.issues}</ExternalLink>
-            <ExternalLink href={LICENSE_URL}>{t.footer.links.license}</ExternalLink>
-            <ExternalLink href={PRIVACY_URL}>{t.footer.links.privacy}</ExternalLink>
+            <ExternalLink href={LICENSE_URL}>{t.footer.links.license} <small lang="en">(English)</small></ExternalLink>
+            <ExternalLink href={PRIVACY_URL}>{t.footer.links.privacy} <small lang="en">(English)</small></ExternalLink>
           </div>
         </div>
       </footer>

@@ -5,9 +5,10 @@
   "type": "module",
   "scripts": {
     "dev": "vite",
-    "build": "vite build && node scripts/prepare-sites-build.mjs && node scripts/prepare-cloudflare-assets.mjs",
+    "build": "npm run test:i18n && vite build && node scripts/prepare-sites-build.mjs && node scripts/prepare-cloudflare-assets.mjs",
     "preview": "vite preview",
     "test:sites": "node --test tests/sites-worker.test.mjs",
+    "test:i18n": "node --test tests/locales.test.mjs tests/locale-preference.test.mjs",
     "test:releases": "node --experimental-strip-types --test tests/releases.test.mjs",
     "test:usage": "node --experimental-strip-types --test tests/usage.test.mjs",
     "usage:report": "node scripts/usage-report.mjs",

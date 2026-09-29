@@ -17,3 +17,7 @@
 .release-checksum code { display: block; overflow-wrap: anywhere; margin-top: 0.6rem; }
 .releases-bottom { display: flex; flex-wrap: wrap; gap: 1rem 2rem; max-width: 64rem; margin: 0 auto; padding: 1rem var(--gutter) 4rem; }
 .releases-bottom a:hover { text-decoration: underline; }
+.releases-main h1 { overflow-wrap: anywhere; }
+.locale-native-script .releases-main h1 { line-height: 1.25; letter-spacing: -0.02em; }
+.release-title { flex-wrap: wrap; }
+.release-entry .button { max-width: 100%; height: auto; min-height: 3rem; white-space: normal; text-align: center; }

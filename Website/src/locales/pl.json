@@ -1,0 +1,244 @@
+{
+  "meta": {
+    "title": "Khua Player — Odtwarzacz stworzony dla szybkości",
+    "description": "Szybki odtwarzacz open source dla Maców z układem Apple. Motion+, większa jasność, lokalne napisy i odtwarzanie uszkodzonych lub niepełnych plików, gdy jest to możliwe."
+  },
+  "nav": [
+    "Wydajność",
+    "Uszkodzone pliki",
+    "Ulepszenia",
+    "Formaty",
+    "Napisy",
+    "Szybki przegląd",
+    "Gwiezdny ślad",
+    "Prywatność",
+    "Otwarty kod"
+  ],
+  "download": "Pobierz",
+  "github": "Zobacz na GitHub",
+  "compatibility": "Układ Apple · macOS 14 lub nowszy",
+  "hero": {
+    "eyebrow": "Odtwarzacz open source dla macOS",
+    "title": "Odtwarzacz.\nLiczy się *{}*.",
+    "rotating": [
+      "szybkość",
+      "reakcja",
+      "płynność",
+      "wydajność",
+      "moc"
+    ],
+    "description": "Dwa kliknięcia i film gra. MKV, MP4, HDR, 4K — także uszkodzone lub wciąż pobierane pliki, jeśli da się je odczytać. Lekki i cichy, stworzony dla układów Apple.",
+    "download": "Pobierz dla macOS"
+  },
+  "performance": {
+    "title": "Dla układu\nw Twoim *Macu*.",
+    "description": "Khua powstał wyłącznie dla układów Apple. Przy zgodnym formacie dedykowany silnik multimedialny dekoduje wideo, a klatki trafiają prosto na ekran. Szybki start oraz płynne 4K i HDR zostawiają zasoby na inne zadania.",
+    "note": "Tylko układy Apple. Maki z procesorem Intel nie są obsługiwane.",
+    "facts": [
+      "Dekodowanie sprzętowe",
+      "Bezpośredni rendering Metal",
+      "Odtwarzanie HDR i 4K"
+    ],
+    "diagram": {
+      "heading": "Droga klatki na ekran",
+      "file": "Twój plik",
+      "zeroCopy": "Bez kopiowania",
+      "caption": "Przy zgodnych formatach silnik multimedialny dekoduje, a Metal wyświetla obraz. Klatki pozostają w pamięci współdzielonej z GPU, bez kopii pośrednich."
+    }
+  },
+  "boosts": {
+    "title": "Płynniej, jaśniej\ni *szybciej*.",
+    "description": "Motion+ wygładza ruch, Brightness+ rozjaśnia obraz, a Turbo przyspiesza wolniejsze fragmenty.",
+    "motion": {
+      "description": "Motion+ tworzy klatki pośrednie, wygładzając panoramy i szybki ruch. Przy włączonej funkcji przytrzymaj C, by porównać oryginał i efekt obok siebie.",
+      "note": "Wymaga macOS 26 i zgodnego Maca. Wideo do 4K przy prędkości 1×. Przy dużym obciążeniu poprawiana może być tylko część obrazu.",
+      "label": "Nocna panorama: oryginał 24 kl./s po lewej, Motion+ 48 kl./s po prawej.",
+      "before": "Oryginał",
+      "after": "Interpolacja 2×",
+      "legendOriginal": "Oryginalne klatki",
+      "legendGenerated": "Klatki utworzone przez Motion+"
+    },
+    "brightness": {
+      "description": "Ekrany takie jak XDR w MacBooku Pro potrafią świecić jaśniej niż zwykła biel. HDR już korzysta z tego zapasu; Brightness+ udostępnia go także filmom SDR.",
+      "note": "Ilustracja. Rzeczywisty efekt wymaga ekranu z dodatkowym zapasem jasności.",
+      "label": "Nocna scena: ciemniejsza bez Brightness+, jaśniejsza po włączeniu.",
+      "before": "Wyłączone"
+    },
+    "turbo": {
+      "description": "Przytrzymaj Spację podczas odtwarzania, aby przejść do 2×, i puść, by wrócić do zwykłej prędkości. Wysokość głosu się nie zmienia. Możesz ustawić nawet 5×.",
+      "label": "Film przyspiesza do 2× po przytrzymaniu Spacji.",
+      "key": "Spacja",
+      "keyLabel": "Przytrzymaj, aby wypróbować Turbo",
+      "hint": "Przytrzymaj"
+    }
+  },
+  "resilience": {
+    "title": "Plik uszkodzony?\nSpróbujmy *dalej*.",
+    "description": "Przerwane pobieranie, trwające nagranie, uszkodzony fragment: Khua próbuje odtworzyć wszystko, co da się odczytać. Naprawia w pamięci bez zmieniania oryginału, pomija nieodzyskiwalne części i oznacza je na osi czasu. Przy pobieraniu kontynuuje, gdy docierają kolejne dane.",
+    "note": "Nie każdy uszkodzony plik da się odtworzyć. Khua wyjaśnia przyczynę niepowodzenia.",
+    "label": "Oś czasu w kolorach filmu: uszkodzenia bursztynowe i czerwone, niepobrane części szare.",
+    "progress": "Pobieranie {p}%",
+    "done": "Pobieranie ukończone",
+    "playing": "Odtwarzanie",
+    "waiting": "Oczekiwanie na pobieranie…",
+    "legend": [
+      "Częściowo odtwarzalne",
+      "Niedostępne",
+      "Rzadkie szare cząsteczki oznaczają niepobrane dane"
+    ]
+  },
+  "subtitles": {
+    "eyebrow": "Napisy na Twoim Macu",
+    "title": "Brak napisów?\nTeraz *są*.",
+    "description": "Khua tworzy napisy z dźwięku filmu na Twoim Macu i tłumaczy nowe lub istniejące napisy tekstowe. Tłumaczenie widać nad oryginałem. Gotowe linie pojawiają się od razu, a wynik można zapisać jako SRT obok filmu.",
+    "note": "Wymaga macOS 26. Obsługiwane języki zależą od macOS; przy pierwszym użyciu system może pobrać model językowy.",
+    "label": "Polskie tłumaczenie nad oryginalnym tekstem japońskim.",
+    "status": "Transkrypcja {p}% · napisy gotowe do {t}",
+    "cues": [
+      "Wyruszmy przed wschodem słońca.",
+      "Droga na północ powinna być jeszcze otwarta.",
+      "W takim razie lepiej się pospieszmy."
+    ]
+  },
+  "formats": {
+    "title": "Twoje pliki.\nPo prostu *odtwarzaj*.",
+    "description": "MKV, MP4, MOV, WebM, AVI, MPEG-TS, FLV, WMV i popularne formaty audio. Także HDR, AV1, H.266 (VVC), ProRes, MXF i DNxHD. Wbudowane napisy i pliki w tym samym folderze są ładowane automatycznie — bez wyszukiwania i pobierania napisów z sieci. Bez konwersji i dodatkowych pakietów kodeków."
+  },
+  "timeline": {
+    "title": "Oś czasu\nw kolorach *filmu*.",
+    "description": "Domyślną oś czasu tworzą tysiące cząsteczek. Kolory pochodzą z filmu, a gęstość zależy od przepływności. Obejrzane fragmenty zbierają się w jasną linię, reszta nadal płynie. Cząsteczki rozświetlają się przy wskaźniku, na ekranach XDR jaśniej niż zwykła biel.",
+    "note": "Dostępne są też style Płynny i Klasyczny.",
+    "label": "Interaktywna oś czasu z gwiezdnym śladem, kolorami filmu i blaskiem przy wskaźniku.",
+    "hint": "Przesuń wskaźnik lub przeciągnij oś czasu",
+    "switchLabel": "Styl osi czasu",
+    "styles": [
+      "Gwiezdny ślad",
+      "Płynny",
+      "Klasyczny"
+    ]
+  },
+  "quickLook": {
+    "title": "Naciśnij Spację.\nNawet dla *MKV*.",
+    "description": "Zaznacz zgodny film w Finderze i naciśnij Spację, by od razu go obejrzeć, także MKV. Rozszerzenie Szybkiego przeglądu Khua ma własny silnik odtwarzania i obsługuje więcej formatów.",
+    "label": "Ilustracja: wybór MKV w Finderze i odtwarzanie Spacją w Szybkim przeglądzie.",
+    "folder": "Filmy",
+    "favorites": "Ulubione",
+    "sidebar": [
+      "Biurko",
+      "Pobrane",
+      "Filmy",
+      "Dokumenty"
+    ],
+    "key": "Spacja",
+    "openWith": "Otwórz w Khua"
+  },
+  "size": {
+    "eyebrow": "Lekkość z założenia",
+    "title": "Zamknięty — cisza.\nOtwarty — *lekkość*.",
+    "description": "Po zamknięciu Khua nie zostają programy na pasku menu ani aktualizatory w tle. Zgodne formaty używają silnika multimedialnego, oszczędzając CPU. Sama aplikacja też jest niewielka.",
+    "note": "Obecnie około 20 MB."
+  },
+  "privacy": {
+    "title": "Twoje multimedia\nna Twoim *Macu*.",
+    "description": "Bez konta, reklam i śledzenia odtwarzania. Filmy, historia i przetwarzanie napisów pozostają na Macu. Istniejące sprawdzanie aktualizacji obejmuje ograniczone statystyki instalacji, bez nowych żądań i danych odtwarzania. Szczegóły znajdziesz w polityce prywatności.",
+    "action": "Polityka prywatności"
+  },
+  "openSource": {
+    "title": "Otwarty kod.\nSprawdź *samodzielnie*.",
+    "description": "Kod Khua Player jest na GitHub na licencji MIT. Poznaj działanie, skompiluj aplikację lub zaproponuj poprawkę. Zgłoszenia błędów i pomysły są mile widziane.",
+    "action": "Odkryj kod na GitHub"
+  },
+  "details": {
+    "eyebrow": "Małe rzeczy",
+    "title": "Detale na\nkażdy *dzień*.",
+    "items": [
+      [
+        "Wróć do oglądania",
+        "Ponownie otwarty film wraca do ostatniej pozycji, także z ekranu powitalnego."
+      ],
+      [
+        "Twoje napisy, załadowane",
+        "Napisy z tego samego folderu są dobierane według języka. Bez wyszukiwania i pobierania z sieci."
+      ],
+      [
+        "Klatka po klatce",
+        "Kropka i przecinek przesuwają film o jedną klatkę w przód lub wstecz."
+      ],
+      [
+        "Zrzuty klawiszem S",
+        "Naciśnij S, aby zapisać bieżącą klatkę w wybranym miejscu."
+      ],
+      [
+        "Prawdziwy dźwięk przestrzenny",
+        "Wyjście 5.1 i 7.1 na zgodnych urządzeniach, także po zmianie wyjścia audio."
+      ],
+      [
+        "Domyślny odtwarzacz",
+        "Przypisz filmy, audio lub oba typy w jednym oknie i łatwo cofnij zmianę."
+      ],
+      [
+        "Więcej głośności",
+        "Wzmocnij ciche nagrania do 500%, z ochroną szczytów sygnału."
+      ],
+      [
+        "Wiele filmów naraz",
+        "Każdy film ma osobne okno do odtwarzania obok innych."
+      ],
+      [
+        "17 języków",
+        "Aplikacja i witryna są dostępne w 17 językach."
+      ]
+    ]
+  },
+  "closing": {
+    "eyebrow": "Kiedy zechcesz",
+    "title": "Pobierz Khua Player.\nWłącz *film*.",
+    "description": "Dla Maców z układem Apple i macOS 14 lub nowszym.",
+    "download": "Pobierz Khua Player"
+  },
+  "footer": {
+    "tagline": "Szybki, prywatny odtwarzacz open source dla macOS.",
+    "issues": "Zgłoś problem",
+    "license": "Licencja",
+    "privacy": "Prywatność"
+  },
+  "ui": {
+    "scroll": "Przewiń",
+    "language": "Język",
+    "playMotion": "Wznów animacje",
+    "pauseMotion": "Wstrzymaj animacje",
+    "skip": "Przejdź do treści",
+    "home": "Strona główna Khua Player",
+    "navigation": "Nawigacja główna",
+    "discover": "Poznaj Khua Player",
+    "formats": "Obsługiwane formaty",
+    "download": "Pobierz najnowszy DMG Khua Player"
+  },
+  "releases": {
+    "title": "Historia wersji",
+    "intro": "Pobierz najnowszą wersję lub przejrzyj poprzednie. Wszystkie pliki są podpisane Developer ID i notaryzowane przez Apple.",
+    "note": "Aktualizacje w aplikacji działają od wersji 0.6.0. Starsze wymagają jednorazowej ręcznej instalacji. Powrót do starszej wersji może nie zachować nowych ustawień.",
+    "loading": "Wczytywanie wersji…",
+    "error": "Informacje niedostępne. Odśwież stronę za chwilę.",
+    "latest": "Najnowsza",
+    "build": "Kompilacja",
+    "back": "← Powrót do Khua Player",
+    "source": "Kod na GitHub",
+    "englishNotes": "Opis tej wersji jest dostępny po angielsku."
+  },
+  "releaseNotes": {
+    "0.6.1": [
+      "Sprawdzanie aktualizacji przesyła losowy identyfikator instalacji, aby usuwać duplikaty ze statystyk aktywności i wersji.",
+      "Bez dodatkowych żądań, zbierania danych odtwarzania, nowych ustawień i okien uprawnień. Automatyczne sprawdzanie nadal jest domyślnie włączone.",
+      "Zaktualizowano politykę prywatności i opis w aplikacji we wszystkich 17 językach."
+    ],
+    "0.6.0": [
+      "Włącza sprawdzanie aktualizacji w aplikacji pobranej bezpośrednio.",
+      "Weryfikuje podpisy kanału aktualizacji i pakietów przed instalacją."
+    ],
+    "0.5.1": [
+      "Aplikacja nosi nazwę Khua, a okno informacji pokazuje Khua Player.",
+      "Podpis Developer ID i notaryzacja Apple; poświadczenia dołączono do aplikacji i obrazu dysku."
+    ]
+  }
+}

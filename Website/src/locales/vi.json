@@ -1,0 +1,244 @@
+{
+  "meta": {
+    "title": "Khua Player — Trình phát được tạo nên vì tốc độ",
+    "description": "Trình phát mã nguồn mở, nhanh gọn cho Mac dùng chip Apple. Motion+, tăng độ sáng, phụ đề xử lý tại máy và phát phần có thể đọc của tệp hỏng hoặc chưa tải xong."
+  },
+  "nav": [
+    "Hiệu năng",
+    "Tệp bị hỏng",
+    "Tăng cường",
+    "Định dạng",
+    "Phụ đề",
+    "Xem nhanh",
+    "Vệt sao",
+    "Quyền riêng tư",
+    "Mã nguồn mở"
+  ],
+  "download": "Tải về",
+  "github": "Xem trên GitHub",
+  "compatibility": "Chip Apple · macOS 14 trở lên",
+  "hero": {
+    "eyebrow": "Trình phát mã nguồn mở cho macOS",
+    "title": "Trình phát\ncho *{}*.",
+    "rotating": [
+      "tốc độ",
+      "phản hồi",
+      "độ mượt",
+      "hiệu suất",
+      "hiệu quả"
+    ],
+    "description": "Nhấp đúp là phát. MKV, MP4, HDR, 4K, cả tệp hỏng hoặc đang tải nếu còn đọc được. Nhẹ và yên tĩnh, thiết kế riêng cho chip Apple.",
+    "download": "Tải cho macOS"
+  },
+  "performance": {
+    "title": "Dành cho con chip\ntrong *Mac* của bạn.",
+    "description": "Khua được thiết kế riêng cho chip Apple. Với định dạng được hỗ trợ, bộ xử lý đa phương tiện chuyên dụng giải mã video và đưa khung hình thẳng lên màn hình. Mở nhanh, phát 4K và HDR mượt mà, để Mac còn dư sức cho công việc khác.",
+    "note": "Chỉ hỗ trợ chip Apple. Không hỗ trợ Mac Intel.",
+    "facts": [
+      "Giải mã bằng phần cứng",
+      "Hiển thị trực tiếp với Metal",
+      "Phát HDR và 4K"
+    ],
+    "diagram": {
+      "heading": "Hành trình của một khung hình",
+      "file": "Tệp của bạn",
+      "zeroCopy": "Không sao chép",
+      "caption": "Với định dạng được hỗ trợ, bộ xử lý đa phương tiện giải mã và Metal hiển thị. Khung hình nằm trong bộ nhớ dùng chung với GPU, không phải sao chép qua các bước trung gian."
+    }
+  },
+  "boosts": {
+    "title": "Mượt hơn, sáng hơn,\nvà *nhanh hơn*.",
+    "description": "Motion+ làm mượt chuyển động, Brightness+ tăng độ sáng, Turbo giúp lướt qua các đoạn chậm.",
+    "motion": {
+      "description": "Motion+ tạo khung hình trung gian để cảnh lia máy và chuyển động nhanh mượt hơn. Khi bật, giữ C để so sánh bản gốc và kết quả cạnh nhau.",
+      "note": "Cần macOS 26 và Mac được hỗ trợ. Áp dụng cho video tối đa 4K ở tốc độ 1×. Khi Mac bận, có thể chỉ một phần hình ảnh được làm mượt.",
+      "label": "Cảnh lia đường phố ban đêm: bản gốc 24 fps bên trái, Motion+ 48 fps bên phải.",
+      "before": "Bản gốc",
+      "after": "Nội suy 2×",
+      "legendOriginal": "Khung hình gốc",
+      "legendGenerated": "Khung hình do Motion+ tạo"
+    },
+    "brightness": {
+      "description": "Màn hình như XDR trên MacBook Pro có thể sáng hơn màu trắng thông thường. HDR đã dùng phần dư này; Brightness+ cho video SDR tận dụng được nó.",
+      "note": "Hình minh họa. Hiệu ứng thật cần màn hình có dư địa độ sáng bổ sung.",
+      "label": "Cảnh đêm tối hơn khi tắt Brightness+ và sáng hơn khi bật.",
+      "before": "Tắt"
+    },
+    "turbo": {
+      "description": "Giữ phím cách khi phát để chuyển sang 2×; thả ra để về tốc độ thường. Giọng nói giữ nguyên cao độ. Có thể chỉnh tối đa 5×.",
+      "label": "Video tăng lên 2× khi giữ phím cách.",
+      "key": "Phím cách",
+      "keyLabel": "Giữ để thử Turbo",
+      "hint": "Nhấn và giữ"
+    }
+  },
+  "resilience": {
+    "title": "Tệp bị hỏng?\nVẫn cố gắng *phát*.",
+    "description": "Tải xuống bị gián đoạn, tệp đang ghi, đoạn video bị hỏng: Khua cố phát mọi phần còn đọc được. Sửa trong bộ nhớ, không đổi tệp gốc; bỏ qua phần không thể phục hồi và đánh dấu trên dòng thời gian. Với tệp đang tải, tiếp tục phát khi có thêm dữ liệu.",
+    "note": "Không phải tệp hỏng nào cũng phát được. Khua giải thích nguyên nhân nếu không thể phát.",
+    "label": "Dòng thời gian theo màu video: vùng hỏng màu vàng và đỏ, phần chưa tải màu xám.",
+    "progress": "Đang tải {p}%",
+    "done": "Đã tải xong",
+    "playing": "Đang phát",
+    "waiting": "Đang chờ tải…",
+    "legend": [
+      "Phát được một phần",
+      "Không khả dụng",
+      "Các hạt xám thưa là phần chưa tải xuống"
+    ]
+  },
+  "subtitles": {
+    "eyebrow": "Phụ đề trên Mac của bạn",
+    "title": "Chưa có phụ đề?\nGiờ thì *có*.",
+    "description": "Khua tạo phụ đề từ âm thanh video ngay trên Mac, rồi dịch phụ đề mới hoặc văn bản có sẵn. Bản dịch nằm trên dòng gốc. Dòng nào tạo xong sẽ hiển thị ngay; kết quả có thể lưu thành SRT cạnh video.",
+    "note": "Cần macOS 26. Ngôn ngữ tùy thuộc macOS; hệ thống có thể tải mô hình ngôn ngữ trong lần đầu sử dụng.",
+    "label": "Bản dịch tiếng Việt nằm trên dòng gốc tiếng Nhật.",
+    "status": "Đang chép lời {p}% · phụ đề sẵn sàng đến {t}",
+    "cues": [
+      "Mình đi trước lúc mặt trời mọc nhé.",
+      "Đường lên phía bắc chắc vẫn còn mở.",
+      "Vậy thì phải nhanh lên thôi."
+    ]
+  },
+  "formats": {
+    "title": "Tệp bạn đang có,\ncứ thế mà *phát*.",
+    "description": "MKV, MP4, MOV, WebM, AVI, MPEG-TS, FLV, WMV và định dạng âm thanh phổ biến. Có cả HDR, AV1, H.266 (VVC), ProRes, MXF và DNxHD. Tự nạp phụ đề nhúng và tệp phụ đề cùng thư mục; không tìm hay tải phụ đề trên mạng. Không cần chuyển đổi hoặc cài thêm bộ giải mã."
+  },
+  "timeline": {
+    "title": "Thời gian mang màu\ncủa chính *video*.",
+    "description": "Dòng thời gian mặc định gồm hàng nghìn hạt. Màu lấy từ video, mật độ theo tốc độ bit. Phần đã xem gom thành đường sáng; phía trước tiếp tục trôi. Các hạt sáng lên gần con trỏ, vượt màu trắng thông thường trên màn hình XDR.",
+    "note": "Cũng có thể chọn kiểu Chất lỏng hoặc Cổ điển.",
+    "label": "Dòng thời gian vệt sao tương tác, mang màu video và sáng quanh con trỏ.",
+    "hint": "Di con trỏ hoặc kéo trên dòng thời gian",
+    "switchLabel": "Kiểu dòng thời gian",
+    "styles": [
+      "Vệt sao",
+      "Chất lỏng",
+      "Cổ điển"
+    ]
+  },
+  "quickLook": {
+    "title": "Nhấn phím cách.\nKể cả *MKV*.",
+    "description": "Chọn video được hỗ trợ trong Finder, nhấn phím cách là phát ngay, kể cả MKV. Tiện ích Xem nhanh của Khua tích hợp bộ máy phát riêng, hỗ trợ xem trước nhiều định dạng hơn.",
+    "label": "Minh họa: chọn MKV trong Finder rồi nhấn phím cách để phát bằng Xem nhanh.",
+    "folder": "Phim",
+    "favorites": "Mục ưa thích",
+    "sidebar": [
+      "Màn hình nền",
+      "Bản tải về",
+      "Phim",
+      "Tài liệu"
+    ],
+    "key": "Phím cách",
+    "openWith": "Mở bằng Khua"
+  },
+  "size": {
+    "eyebrow": "Nhẹ từ thiết kế",
+    "title": "Đóng thì yên.\nMở thì *nhẹ*.",
+    "description": "Khi đóng Khua, không còn ứng dụng phụ trên thanh menu hay trình cập nhật chạy nền. Các định dạng được hỗ trợ dùng bộ xử lý đa phương tiện để giảm tải CPU. Bản thân ứng dụng cũng nhỏ gọn.",
+    "note": "Hiện khoảng 20 MB."
+  },
+  "privacy": {
+    "title": "Nội dung của bạn\nở trên *Mac* của bạn.",
+    "description": "Không tài khoản, quảng cáo hay theo dõi phát lại. Video, lịch sử và xử lý phụ đề ở lại trên Mac. Các lần kiểm tra cập nhật sẵn có kèm thống kê cài đặt giới hạn, không thêm yêu cầu hoặc dữ liệu phát lại. Xem chính sách quyền riêng tư để biết chi tiết.",
+    "action": "Đọc chính sách quyền riêng tư"
+  },
+  "openSource": {
+    "title": "Mã nguồn mở.\nTự mình *khám phá*.",
+    "description": "Mã nguồn Khua Player có trên GitHub theo giấy phép MIT. Tìm hiểu cách hoạt động, tự biên dịch hoặc đóng góp bản sửa. Mọi báo lỗi và ý tưởng đều được chào đón.",
+    "action": "Khám phá trên GitHub"
+  },
+  "details": {
+    "eyebrow": "Những chi tiết nhỏ",
+    "title": "Tiện ích cho\nmỗi *ngày*.",
+    "items": [
+      [
+        "Xem tiếp chỗ đã dừng",
+        "Mở lại video tại vị trí trước đó, cũng có thể tiếp tục từ màn hình chào mừng."
+      ],
+      [
+        "Tự nạp phụ đề có sẵn",
+        "Nạp phụ đề cùng thư mục và chọn theo ngôn ngữ. Không tìm hay tải phụ đề trên mạng."
+      ],
+      [
+        "Từng khung hình",
+        "Dùng dấu chấm và dấu phẩy để tiến hoặc lùi một khung hình."
+      ],
+      [
+        "Chụp bằng S",
+        "Nhấn S để lưu khung hình hiện tại vào nơi bạn chọn."
+      ],
+      [
+        "Âm thanh đa kênh thực",
+        "Xuất 5.1 và 7.1 trên thiết bị phù hợp, theo cả khi đổi đầu ra âm thanh."
+      ],
+      [
+        "Trình phát mặc định",
+        "Đặt video, âm thanh hoặc cả hai trong một hộp thoại; dễ dàng hoàn tác."
+      ],
+      [
+        "Âm lượng lớn hơn",
+        "Tăng âm thanh nhỏ lên tối đa 500%, có bảo vệ đỉnh âm."
+      ],
+      [
+        "Nhiều video cùng lúc",
+        "Mỗi video có cửa sổ riêng để phát cạnh nhau."
+      ],
+      [
+        "17 ngôn ngữ",
+        "Ứng dụng và trang web hỗ trợ 17 ngôn ngữ."
+      ]
+    ]
+  },
+  "closing": {
+    "eyebrow": "Khi bạn sẵn sàng",
+    "title": "Tải Khua Player.\nNhấn *phát*.",
+    "description": "Dành cho Mac dùng chip Apple với macOS 14 trở lên.",
+    "download": "Tải Khua Player"
+  },
+  "footer": {
+    "tagline": "Trình phát macOS nhanh, riêng tư và mã nguồn mở.",
+    "issues": "Báo sự cố",
+    "license": "Giấy phép",
+    "privacy": "Quyền riêng tư"
+  },
+  "ui": {
+    "scroll": "Cuộn xuống",
+    "language": "Ngôn ngữ",
+    "playMotion": "Tiếp tục hiệu ứng",
+    "pauseMotion": "Tạm dừng hiệu ứng",
+    "skip": "Đến nội dung chính",
+    "home": "Trang chủ Khua Player",
+    "navigation": "Điều hướng chính",
+    "discover": "Khám phá Khua Player",
+    "formats": "Định dạng được hỗ trợ",
+    "download": "Tải DMG Khua Player mới nhất"
+  },
+  "releases": {
+    "title": "Lịch sử phiên bản",
+    "intro": "Tải phiên bản mới nhất hoặc xem các bản trước. Mọi bản tải đều được ký Developer ID và công chứng bởi Apple.",
+    "note": "Cập nhật trong ứng dụng có từ bản 0.6.0. Bản cũ hơn cần cài thủ công một lần. Hạ phiên bản có thể không giữ được cài đặt mới.",
+    "loading": "Đang tải phiên bản…",
+    "error": "Chưa lấy được thông tin phiên bản. Vui lòng tải lại sau.",
+    "latest": "Mới nhất",
+    "build": "Bản dựng",
+    "back": "← Về Khua Player",
+    "source": "Mã nguồn trên GitHub",
+    "englishNotes": "Ghi chú phiên bản này được cung cấp bằng tiếng Anh."
+  },
+  "releaseNotes": {
+    "0.6.1": [
+      "Kiểm tra cập nhật kèm mã cài đặt ngẫu nhiên để thống kê hoạt động và phiên bản sau khi loại trùng.",
+      "Không thêm yêu cầu, thu thập dữ liệu phát lại, cài đặt mới hay hộp thoại quyền. Tự kiểm tra cập nhật vẫn bật mặc định.",
+      "Cập nhật chính sách quyền riêng tư và phần tóm tắt trong ứng dụng bằng cả 17 ngôn ngữ."
+    ],
+    "0.6.0": [
+      "Bật kiểm tra cập nhật trong ứng dụng cho bản tải trực tiếp.",
+      "Xác minh chữ ký của nguồn cập nhật và gói cài đặt trước khi cài."
+    ],
+    "0.5.1": [
+      "Ứng dụng mang tên Khua; cửa sổ Giới thiệu dùng Khua Player.",
+      "Đã ký Developer ID và công chứng Apple; vé công chứng được đính kèm ứng dụng và ảnh đĩa."
+    ]
+  }
+}
