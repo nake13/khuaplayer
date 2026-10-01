@@ -116,6 +116,9 @@
 - (void)setForcedAspect:(float)ratio; // Positive values force display aspect; zero restores the default.
 - (void)setCropAspect:(float)ratio;   // Positive values apply centered aspect cropping; zero disables it.
 - (void)setRotation:(int)deg;      // 0/90/180/270
+// Clockwise rotation from the stream's display matrix, composed with the user
+// rotation above. Media-scoped: it is cleared with the picture transform.
+- (void)setSourceRotation:(int)deg;
 - (void)setMirror:(int)m;          // 0: none, 1: horizontal, 2: vertical.
 - (void)resetPictureTransform;     // Restore picture geometry defaults when opening new media.
 - (void)setBrightness:(float)v;    // -0.5~0.5

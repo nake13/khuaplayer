@@ -287,7 +287,7 @@ static void spWriteRenderDump(id<MTLTexture> dumpTex, NSString *dumpPath,
 
     BOOL _compareSplitEnabled;
     CGRect _subtitleRect;
-    int _aspectMode, _rotation, _mirror;
+    int _aspectMode, _rotation, _sourceRotation, _mirror;
     float _brightness, _contrast, _saturation, _gamma;
 
     float _fxStrength;
@@ -540,7 +540,7 @@ static_assert(kSPDragFxNearLevel <= kSPDragFxFarLevel);
             sp::DoviReshape def;
             sp::doviToGpuFloats(def, _doviGpu.values);
         }
-        _aspectMode = 0; _rotation = 0; _mirror = 0;
+        _aspectMode = 0; _rotation = 0; _sourceRotation = 0; _mirror = 0;
         _brightness = 0; _contrast = 1; _saturation = 1; _gamma = 1;
         _specPipelineKey = UINT32_MAX;
         _specBuilding.store(false);
@@ -906,6 +906,11 @@ static bool spRenderInlineMode(void) {
     _cropAspect = (ratio > 0.1f && ratio < 10.0f) ? ratio : 0.0f;
 }
 - (void)setRotation:(int)deg { std::lock_guard<std::mutex> lock(_cfgMtx); _rotation = ((deg % 360) + 360) % 360 / 90; }
+- (void)setSourceRotation:(int)deg {
+    std::lock_guard<std::mutex> lock(_cfgMtx);
+    // The shader's quarter turns run counter-clockwise on screen.
+    _sourceRotation = (4 - ((deg % 360) + 360) % 360 / 90) % 4;
+}
 - (void)setMirror:(int)m { std::lock_guard<std::mutex> lock(_cfgMtx); _mirror = m; }
 // Geometry is media-session state: aspect correction, crop, rotation and mirror
 // reset for each item. Process-scoped color-adjustment hooks are intentionally
@@ -913,7 +918,7 @@ static bool spRenderInlineMode(void) {
 - (void)resetPictureTransform {
     std::lock_guard<std::mutex> lock(_cfgMtx);
     bool hadState = _forcedAspect > 0.0f || _cropAspect > 0.0f ||
-                    _rotation != 0 || _mirror != 0;
+                    _rotation != 0 || _sourceRotation != 0 || _mirror != 0;
     if (hadState && spDebug()) {
         SPLOG(@"[Renderer] 画面几何参数跨片清除: forced=%.3f crop=%.3f rot=%d mirror=%d → 默认",
               _forcedAspect, _cropAspect, _rotation * 90, _mirror);
@@ -921,6 +926,7 @@ static bool spRenderInlineMode(void) {
     _forcedAspect = 0.0f;
     _cropAspect = 0.0f;
     _rotation = 0;
+    _sourceRotation = 0;
     _mirror = 0;
 }
 
@@ -1879,7 +1885,7 @@ static bool spRenderInlineMode(void) {
     uniforms.uvals[15] = (float)subRect.size.height;
     uniforms.uvals[16] = subTex ? 1 : 0;
     uniforms.uvals[17] = _aspectMode;
-    uniforms.uvals[18] = _rotation;
+    uniforms.uvals[18] = (_rotation + _sourceRotation) % 4;
     uniforms.uvals[19] = _mirror;
     uniforms.uvals[20] = _brightness;
     uniforms.uvals[21] = _contrast;

@@ -32,6 +32,7 @@ extern "C" {
 #include "SPThumbBlackBorder.hpp"
 #include "TsRapScan.hpp"
 #include "SPDoviRPU.hpp"
+#include "SPDisplayRotation.hpp"
 
 using spthumb::SPThumbClaim;
 using spthumb::SPThumbHoldVerdict;
@@ -214,6 +215,38 @@ static CGImageRef spThumbRenderCG(CIContext *ciCtx, CGColorSpaceRef srgb,
                        fromRect:ci.extent
                          format:kCIFormatRGBA8
                      colorSpace:srgb];
+}
+
+// Consumes `cg` and returns it turned upright for a stream whose display
+// matrix rotates it, so hover previews match the playing picture. The result
+// is refitted to the 384x216 preview box, so a rotated portrait thumbnail is
+// no larger than a native one. Keeps the source color space (sRGB or PQ/HLG)
+// and falls back to the unrotated image.
+static CGImageRef spThumbRotateCG(CGImageRef cg, int clockwise) CF_RETURNS_RETAINED {
+    if (!cg || clockwise == 0) return cg;
+    const size_t w = CGImageGetWidth(cg), h = CGImageGetHeight(cg);
+    const bool swap = sp::spRotationSwapsAxes(clockwise);
+    const double fit = std::min(1.0, std::min(384.0 / (swap ? h : w), 216.0 / (swap ? w : h)));
+    const double dw = w * fit, dh = h * fit;   // Drawn size before rotation.
+    const size_t ow = std::max<size_t>(2, (size_t)llround(swap ? dh : dw));
+    const size_t oh = std::max<size_t>(2, (size_t)llround(swap ? dw : dh));
+    const bool deep = CGImageGetBitsPerComponent(cg) > 8;
+    CGColorSpaceRef cs = CGImageGetColorSpace(cg);
+    CGContextRef bmp = CGBitmapContextCreate(
+        NULL, ow, oh, deep ? 16 : 8, 0, cs,
+        deep ? (CGBitmapInfo)kCGImageAlphaPremultipliedLast
+             : (CGBitmapInfo)kCGImageAlphaNoneSkipLast);
+    if (!bmp) return cg;
+    // Core Graphics is y-up, so a negative angle turns the picture clockwise.
+    CGContextTranslateCTM(bmp, ow / 2.0, oh / 2.0);
+    CGContextRotateCTM(bmp, -clockwise * M_PI / 180.0);
+    CGContextSetInterpolationQuality(bmp, kCGInterpolationHigh);
+    CGContextDrawImage(bmp, CGRectMake(-dw / 2, -dh / 2, dw, dh), cg);
+    CGImageRef out = CGBitmapContextCreateImage(bmp);
+    CGContextRelease(bmp);
+    if (!out) return cg;
+    CGImageRelease(cg);
+    return out;
 }
 
 // HEIC quality 0.8 and JPEG quality 0.72 balance artifacting and size at
@@ -438,6 +471,7 @@ static void spThumbWorkerMain(std::shared_ptr<SPThumbShared> sh,
     CGColorSpaceRef srgb = CGColorSpaceCreateWithName(kCGColorSpaceSRGB);
     int vs = -1;
     int hdrTrc = 0;
+    int rotation = 0;
     bool opened = false, openFailed = false, decoderFailed = false;
     bool planBuilt = false;
     std::vector<int64_t> keyAbsUs;
@@ -545,6 +579,7 @@ static void spThumbWorkerMain(std::shared_ptr<SPThumbShared> sh,
             return SPThumbOpenResult::Failed;
         }
         ctx = c;
+        rotation = sp::spStreamClockwiseRotation(c->streams[vs]);
 
         {
             AVCodecParameters *par = c->streams[vs]->codecpar;
@@ -935,6 +970,7 @@ static void spThumbWorkerMain(std::shared_ptr<SPThumbShared> sh,
         } else {
             cg = spThumbRenderCG(ciCtx, srgb, out.pixelBuffer, hdrTrc, &isHEIC, sh->logId);
         }
+        cg = spThumbRotateCG(cg, rotation);
 
         int64_t tPublishUs = 0;
         if (cg && isHEIC) {
@@ -949,6 +985,7 @@ static void spThumbWorkerMain(std::shared_ptr<SPThumbShared> sh,
             isHEIC = false;
             cg = spThumbRenderCG(ciCtx, srgb, out.pixelBuffer, /*hdrTrc=*/0,
                                  &isHEIC, sh->logId);
+            cg = spThumbRotateCG(cg, rotation);
             jpeg = cg ? spThumbEncodeCG(cg, false) : nil;
             if (jpeg) spThumbPublishImage(weakSelf, cg, keyUs, resolvedTargetUs);
         }
