@@ -117,6 +117,7 @@ struct StreamInfo {
     double fps = 0.0;
     int width = 0;
     int height = 0;
+    int rotation = 0;            // Clockwise display rotation: 0, 90, 180 or 270.
 
     AVRational sampleAspect {1, 1};
     int64_t bitRate = 0;

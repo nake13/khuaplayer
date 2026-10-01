@@ -36,6 +36,7 @@ static BOOL spPlanarOutputEnabled(void) {
 #include "SPPacketFixDispatch.hpp"
 #include "SPVideoRecoveryLane.hpp"
 #include "SPGopReadback.hpp"
+#include "SPDisplayRotation.hpp"
 #include <memory>
 
 @interface SPDamageSnapshot ()
@@ -989,6 +990,7 @@ static bool spFlacNativeMd5Wanted(const AVCodecParameters *par, spresil::FlacStr
     AVRational _videoTimeBase;
     double _videoFps;
     int _videoWidth, _videoHeight;
+    int _videoRotation;   // Clockwise display rotation from the container.
     BOOL _hasAudio;
     int64_t _lastPresentedPtsUs;
     int64_t _frameIntervalUs;
@@ -1105,6 +1107,9 @@ static int spDisplaySizeProbeInterrupt(void *opaque) {
                                                        : par->sample_aspect_ratio;
         if (s.num > 0 && s.den > 0) sar = (double)s.num / s.den;
         result = CGSizeMake(par->width * sar, par->height);
+        if (sp::spRotationSwapsAxes(sp::spStreamClockwiseRotation(st))) {
+            result = CGSizeMake(result.height, result.width);
+        }
         break;
     }
     avformat_close_input(&ctx);
@@ -1781,6 +1786,10 @@ static BOOL spProbeStreamEmitsBFrames(NSString *path) {
     if (spDebug() && vs.fps > 240.0) SPLOG(@"[Core] 容器 fps=%.1f 超界 → 节奏按 240", vs.fps);
     _videoWidth = vs.width;
     _videoHeight = vs.height;
+    // Decoded frames keep their stored orientation; the renderer turns them.
+    _videoRotation = vs.rotation;
+    [_renderer setSourceRotation:_videoRotation];
+    if (spDebug() && _videoRotation) SPLOG(@"[Core] 容器显示矩阵：顺时针旋转 %d°", _videoRotation);
 
     _videoIsAttachedPic =
         (ctx->streams[_videoStreamIndex]->disposition & AV_DISPOSITION_ATTACHED_PIC) != 0;
@@ -2301,6 +2310,7 @@ static BOOL spProbeStreamEmitsBFrames(NSString *path) {
     _videoFps = 0;
     _videoWidth = 0;
     _videoHeight = 0;
+    _videoRotation = 0;
     if (_videoParCopy) avcodec_parameters_free(&_videoParCopy);
     if (_thumbVideoPar) avcodec_parameters_free(&_thumbVideoPar);
 
@@ -4238,6 +4248,8 @@ static NSString *spClaimScreenshotPath(NSString *base) {
     }
     CVPixelBufferRef snapshot = CVPixelBufferRetain(_lastFrameBuffer);
     NSString *pathCopy = [path copy];
+    // Save the frame upright, as the container's display matrix intends.
+    const int rotation = _videoRotation;
     dispatch_async(dispatch_get_global_queue(QOS_CLASS_UTILITY, 0), ^{
         static CIContext *sCtx;
         static dispatch_once_t once;
@@ -4253,6 +4265,12 @@ static NSString *spClaimScreenshotPath(NSString *base) {
 
             CVPixelBufferRef ciSource = spCreateBiPlanarCopy(snapshot);
             CIImage *ci = ciSource ? [CIImage imageWithCVPixelBuffer:ciSource] : nil;
+            if (ci && rotation) {
+                ci = [ci imageByApplyingCGOrientation:
+                    rotation == 90 ? kCGImagePropertyOrientationRight
+                    : rotation == 180 ? kCGImagePropertyOrientationDown
+                                      : kCGImagePropertyOrientationLeft];
+            }
             CGImageRef cg = ci ? [sCtx createCGImage:ci fromRect:ci.extent] : NULL;
             if (ciSource) CVPixelBufferRelease(ciSource);
             if (cg) {
@@ -10190,6 +10208,8 @@ NSErrorUserInfoKey const SPPlayerErrorTerminalKey = @"SPPlayerErrorTerminal";
 
     info.width = (int)llround(_videoWidth * (_videoSar > 0 ? _videoSar : 1.0));
     info.height = _videoHeight;
+    // Report the upright display size so windows fit rotated phone video.
+    if (sp::spRotationSwapsAxes(_videoRotation)) std::swap(info.width, info.height);
     info.fps = _videoFps;
     info.duration = _duration;
     info.hasAudio = _hasAudio ? 1 : 0;

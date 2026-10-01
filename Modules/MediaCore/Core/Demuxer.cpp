@@ -1,4 +1,5 @@
 #include "Demuxer.hpp"
+#include "SPDisplayRotation.hpp"
 #include "SPContainerRecovery.hpp"
 #include "Recovery/RecoveryTsPsi.hpp"
 #include "Recovery/RecoveryMkvContentMap.hpp"
@@ -3354,6 +3355,7 @@ void Demuxer::buildStreamInfo(AVStream* s) {
         info.bitRate = par->bit_rate;
         info.width = par->width;
         info.height = par->height;
+        if (info.type == AVMEDIA_TYPE_VIDEO) info.rotation = sp::spStreamClockwiseRotation(s);
 
         AVRational sar = s->sample_aspect_ratio;
         if (sar.num <= 0 || sar.den <= 0) sar = par->sample_aspect_ratio;

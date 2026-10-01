@@ -4,6 +4,10 @@ All notable public releases will be documented here.
 
 ## Unreleased
 
+- Played videos with a rotation tag, such as portrait phone recordings, upright.
+  Windows, Quick Look, timeline previews, and screenshots follow the intended
+  orientation instead of the stored landscape frame.
+
 ## 0.6.1
 
 - Reused existing update checks for installation-level activity and version
