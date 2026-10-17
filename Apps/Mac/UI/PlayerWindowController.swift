@@ -72,6 +72,14 @@ final class PlayerWindowController: NSWindowController, NSWindowDelegate {
         }
     }
 
+    func windowDidFailToEnterFullScreen(_ window: NSWindow) {
+        playerVC.fullscreenTransitionFailed()
+    }
+
+    func windowDidFailToExitFullScreen(_ window: NSWindow) {
+        playerVC.fullscreenTransitionFailed()
+    }
+
     func open(url: URL) {
 
         prepareContentSizeBeforeFirstShow(for: url)

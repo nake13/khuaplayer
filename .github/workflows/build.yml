@@ -44,6 +44,9 @@ jobs:
             ThirdParty/sparkle-min
           key: khua-deps-${{ runner.os }}-${{ runner.arch }}-${{ hashFiles('ThirdParty/deps.lock.json', 'Scripts/build_*.sh', 'Scripts/lib/**', 'Scripts/patches/**') }}
 
+      - name: Check playback gestures
+        run: ./Scripts/test_playback_gestures.sh
+
       - name: Check public repository boundary
         run: ./Scripts/check_public_repo.sh
 

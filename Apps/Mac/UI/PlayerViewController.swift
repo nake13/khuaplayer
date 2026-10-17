@@ -135,6 +135,14 @@ final class PlayerViewController: NSViewController, SPPlayerCoreDelegate, NSMenu
     private lazy var muteButton = NSButton()
     private lazy var hoverTimeLabel = NSTextField(labelWithString: "")
     private var isScrubbing = false
+    private var scrollGesture = SPPlaybackScrollGesture()
+    private var pinchGesture = SPPlaybackPinchGesture()
+    private var scrollSeekTarget: Double?
+    private var scrollSeekWasPlaying = false
+    private var scrollGestureTimeout: Timer?
+    private var gestureSeek = SPPlaybackGestureSeek()
+    private var gestureSeekTimer: Timer?
+    private var gestureFullscreenTransition = false
     private var scrubMuteEngaged = false
     private var scrubMuteAllowed = false
 
@@ -323,6 +331,12 @@ final class PlayerViewController: NSViewController, SPPlayerCoreDelegate, NSMenu
         }
         playerView.onKeyDown = { [weak self] event in self?.handleKey(event) }
         playerView.onKeyUp = { [weak self] event in self?.handleKeyUp(event) }
+        playerView.onScrollWheel = { [weak self] event in
+            self?.handlePlaybackScroll(event) ?? false
+        }
+        playerView.onMagnify = { [weak self] event in
+            self?.handlePlaybackMagnify(event) ?? false
+        }
         playerView.onFileDropped = { [weak self] url in self?.open(url: url) }
         view.addSubview(playerView)
 
@@ -489,6 +503,33 @@ final class PlayerViewController: NSViewController, SPPlayerCoreDelegate, NSMenu
 
     private func installWindowObservers(_ win: NSWindow) {
         observerTokens.append(NotificationCenter.default.addObserver(
+            forName: SPPlaybackGestureSettings.changed, object: nil, queue: .main
+        ) { [weak self] _ in
+            MainActor.assumeIsolated {
+                self?.cancelPlaybackScroll()
+                self?.pinchGesture.reset()
+            }
+        })
+        for name in [NSWindow.willEnterFullScreenNotification,
+                     NSWindow.willExitFullScreenNotification] {
+            observerTokens.append(NotificationCenter.default.addObserver(
+                forName: name, object: win, queue: .main
+            ) { [weak self] _ in
+                MainActor.assumeIsolated {
+                    self?.gestureFullscreenTransition = true
+                    self?.cancelPlaybackScroll()
+                }
+            })
+        }
+        for name in [NSWindow.didEnterFullScreenNotification,
+                     NSWindow.didExitFullScreenNotification] {
+            observerTokens.append(NotificationCenter.default.addObserver(
+                forName: name, object: win, queue: .main
+            ) { [weak self] _ in
+                MainActor.assumeIsolated { self?.gestureFullscreenTransition = false }
+            })
+        }
+        observerTokens.append(NotificationCenter.default.addObserver(
             forName: NSWindow.didChangeScreenNotification, object: win, queue: .main
         ) { [weak self] _ in
             self?.core?.displayScreenChanged()
@@ -516,6 +557,10 @@ final class PlayerViewController: NSViewController, SPPlayerCoreDelegate, NSMenu
             self?.setMotionCompare(false)
             self?.stopRepeat()
             self?.endTurbo(reason: "resignKey")
+            MainActor.assumeIsolated {
+                self?.cancelPlaybackScroll()
+                if self?.gestureFullscreenTransition != true { self?.pinchGesture.reset() }
+            }
             reevaluateThumbSuspension()
         })
 
@@ -588,6 +633,7 @@ final class PlayerViewController: NSViewController, SPPlayerCoreDelegate, NSMenu
         // visible and its latency independent of GOP decode length.
         c.onScrubBegan = { [weak self] target in
             guard let self, !self.turbo.blocksPlaybackControls else { return }
+            self.cancelPlaybackScroll()
             self.yieldDirectoryScanToForegroundIO()
 
             self.thumbTrailingRequest?.cancel()
@@ -2841,6 +2887,8 @@ final class PlayerViewController: NSViewController, SPPlayerCoreDelegate, NSMenu
     private func perform(_ requestedCommand: PlayerCommand) {
 
         if turbo.blocksPlaybackControls, SPTurboSpeed.blocksCommand(requestedCommand) { return }
+        // A new explicit command supersedes an unfinished trackpad seek.
+        if scrollSeekTarget != nil { cancelPlaybackScroll() }
 
         var context = commandContext
         if case .seekRelative(let delta) = requestedCommand {
@@ -3137,6 +3185,7 @@ final class PlayerViewController: NSViewController, SPPlayerCoreDelegate, NSMenu
     }
 
     fileprivate func sliderTrackingBegan() {
+        cancelPlaybackScroll()
         if Self.dbg { NSLog("[UI] slider 按下") }
         yieldDirectoryScanToForegroundIO()
         isScrubbing = true
@@ -3807,12 +3856,16 @@ final class PlayerViewController: NSViewController, SPPlayerCoreDelegate, NSMenu
     }
 
     private func togglePlaybackNow() {
+        cancelPlaybackScroll()
         // Core.play() turns Ended into an implicit precise seek-to-zero.
         if core?.state == .ended { yieldDirectoryScanToForegroundIO() }
         core?.togglePlayPause()
     }
 
     private func turboSpaceDown() {
+        // Restore the pre-gesture state before Turbo decides whether Space is
+        // a pause request or a request to start an already paused item.
+        cancelPlaybackScroll()
         guard let core else { return }
 
         if repeatOwnerKeyCode != nil { stopRepeat() }
@@ -3964,7 +4017,18 @@ final class PlayerViewController: NSViewController, SPPlayerCoreDelegate, NSMenu
         skipNoticeCount = 0
         skipNoticeLastAt = 0
 
-        let shouldResumePlaybackOnRollback = burstWasPlaying
+        let shouldResumePlaybackOnRollback = burstWasPlaying || scrollSeekWasPlaying
+        // Session boundaries drop delayed input without seeking or resuming the
+        // outgoing item. A failed open can restore the captured playback state.
+        scrollGestureTimeout?.invalidate()
+        scrollGestureTimeout = nil
+        gestureSeekTimer?.invalidate()
+        gestureSeekTimer = nil
+        gestureSeek.reset()
+        _ = scrollGesture.reset()
+        pinchGesture.reset()
+        scrollSeekTarget = nil
+        scrollSeekWasPlaying = false
         repeatTimer?.invalidate()
         repeatTimer = nil
         repeatAction = nil
@@ -4115,6 +4179,180 @@ final class PlayerViewController: NSViewController, SPPlayerCoreDelegate, NSMenu
 
     private func toggleFullscreen() {
         view.window?.toggleFullScreen(nil)
+    }
+
+    func fullscreenTransitionFailed() {
+        gestureFullscreenTransition = false
+        pinchGesture.reset()
+    }
+
+    private static func playbackGesturePhase(_ phase: NSEvent.Phase) -> SPPlaybackScrollGesture.Phase {
+        if phase.contains(.cancelled) { return .cancelled }
+        if phase.contains(.ended) { return .ended }
+        if phase.contains(.began) { return .began }
+        return phase.isEmpty ? .none : .changed
+    }
+
+    /// Only PlayerView forwards these events. Scroll views and playback controls
+    /// keep their own input, rather than being intercepted by an app-wide monitor.
+    private func handlePlaybackScroll(_ event: NSEvent) -> Bool {
+        guard hasMediaSession, let core,
+              core.state == .playing || core.state == .paused || core.state == .ended,
+              !turbo.blocksPlaybackControls,
+              !isScrubbing || scrollSeekTarget != nil else {
+            cancelPlaybackScroll()
+            return false
+        }
+        let phase = Self.playbackGesturePhase(event.phase)
+        let effects = scrollGesture.update(
+            deltaX: Double(event.scrollingDeltaX), deltaY: Double(event.scrollingDeltaY),
+            precise: event.hasPreciseScrollingDeltas,
+            inverted: event.isDirectionInvertedFromDevice, phase: phase,
+            momentum: !event.momentumPhase.isEmpty,
+            horizontalEnabled: SPPlaybackGestureSettings.horizontalSeekEnabled,
+            verticalEnabled: SPPlaybackGestureSettings.verticalVolumeEnabled,
+            sensitivity: SPPlaybackGestureSettings.sensitivity.multiplier)
+        for effect in effects {
+            switch effect {
+            case .beginSeek:
+                guard core.duration.isFinite, core.duration > 0 else { continue }
+                stopRepeat()
+                gestureSeekTimer?.invalidate()
+                gestureSeekTimer = nil
+                gestureSeek.reset()
+                scrollSeekTarget = core.position
+                scrollSeekWasPlaying = core.isPlaying
+                thumbTrailingRequest?.cancel()
+                isScrubbing = true
+                scrubMuteAllowed = false
+                lastCoarseTarget = -1
+                lastRelSeekTarget = -1
+                if scrollSeekWasPlaying { core.pause() }
+            case .seek(let delta):
+                if scrollSeekTarget != nil {
+                    gestureSeek.submit(delta)
+                    pumpPlaybackGestureSeek()
+                    transitionPresentation(.timelineChanged(
+                        position: core.position, duration: core.duration, rate: core.playbackRate))
+                    showControlsTemporarily()
+                } else {
+                    perform(.seekRelative(delta))
+                }
+            case .endSeek:
+                endPlaybackScrollSeek()
+            case .volume(let delta):
+                // PlayerCommandPolicy preserves the separate confirmation for
+                // volume boost; a gesture cannot silently cross above 100%.
+                perform(.adjustVolumePercent(delta))
+            }
+        }
+
+        scrollGestureTimeout?.invalidate()
+        scrollGestureTimeout = nil
+        if phase != .ended, phase != .cancelled, phase != .none,
+           event.momentumPhase.isEmpty {
+            // End delivery can be lost when focus or the pointer moves to an
+            // overlay. Never leave an otherwise playing item paused forever.
+            scrollGestureTimeout = Timer.scheduledTimer(withTimeInterval: 0.35, repeats: false) { [weak self] _ in
+                MainActor.assumeIsolated { self?.cancelPlaybackScroll() }
+            }
+        }
+        return SPPlaybackGestureSettings.horizontalSeekEnabled ||
+            SPPlaybackGestureSettings.verticalVolumeEnabled
+    }
+
+    private func endPlaybackScrollSeek() {
+        guard scrollSeekTarget != nil else { return }
+        gestureSeekTimer?.invalidate()
+        gestureSeekTimer = nil
+        if let delta = gestureSeek.finish() {
+            issuePlaybackGestureSeek(delta)
+        }
+        gestureSeek.reset()
+        scrollSeekTarget = nil
+        isScrubbing = false
+        let resume = scrollSeekWasPlaying
+        scrollSeekWasPlaying = false
+        if resume { core?.play() }
+        if let core {
+            transitionPresentation(.timelineChanged(
+                position: core.position, duration: core.duration, rate: core.playbackRate))
+        }
+        showControlsTemporarily()
+    }
+
+    private func pumpPlaybackGestureSeek() {
+        gestureSeekTimer?.invalidate()
+        gestureSeekTimer = nil
+        guard scrollSeekTarget != nil, let core else { return }
+        let now = ProcessInfo.processInfo.systemUptime
+        if let delta = gestureSeek.next(now: now, settled: core.seekSettled) {
+            issuePlaybackGestureSeek(delta)
+        }
+        guard let delay = gestureSeek.retryDelay(now: now, settled: core.seekSettled) else { return }
+        gestureSeekTimer = Timer.scheduledTimer(withTimeInterval: max(0.001, delay), repeats: false) { [weak self] _ in
+            MainActor.assumeIsolated { self?.pumpPlaybackGestureSeek() }
+        }
+    }
+
+    private func issuePlaybackGestureSeek(_ delta: Double) {
+        guard scrollSeekTarget != nil, let core,
+              core.position.isFinite, core.duration.isFinite else { return }
+        // Apply the combined relative movement to the latest playback landing.
+        // Directional keyframe selection keeps small forward movements from
+        // repeatedly redisplaying the preceding keyframe. Release uses the
+        // same quick seek policy, without an extra exact decode.
+        let target = max(0, min(core.duration, core.position + delta))
+        guard abs(target - core.position) >= 0.0005 else { return }
+        scrollSeekTarget = target
+        issueForegroundSeek(to: target, precise: false, forward: delta > 0)
+    }
+
+    private func cancelPlaybackScroll() {
+        scrollGestureTimeout?.invalidate()
+        scrollGestureTimeout = nil
+        _ = scrollGesture.reset()
+        endPlaybackScrollSeek()
+    }
+
+    private func handlePlaybackMagnify(_ event: NSEvent) -> Bool {
+        let mode: SPPlaybackPinchGesture.Mode
+        switch SPPlaybackGestureSettings.pinchAction {
+        case .resizeWindow: mode = .resizeWindow
+        case .fullscreen: mode = .fullscreen
+        case .disabled: mode = .disabled
+        }
+        guard hasVideoSession, let window = view.window,
+              core?.state == .playing || core?.state == .paused || core?.state == .ended,
+              !turbo.blocksPlaybackControls, mode != .disabled else {
+            pinchGesture.reset()
+            return false
+        }
+        cancelPlaybackScroll()
+        let phase = Self.playbackGesturePhase(event.phase)
+        if gestureFullscreenTransition {
+            if phase == .ended || phase == .cancelled { pinchGesture.reset() }
+            return true
+        }
+        let frame = window.frame
+        let visible = (window.screen ?? NSScreen.main)?.visibleFrame ?? frame
+        let minimum = window.contentRect(forFrameRect: NSRect(origin: .zero, size: window.minSize)).size
+        let effect = pinchGesture.update(
+            magnification: Double(event.magnification), phase: phase, mode: mode,
+            contentSize: window.contentRect(forFrameRect: frame).size,
+            minimum: minimum, maximum: window.contentRect(forFrameRect: visible).size,
+            isFullscreen: window.styleMask.contains(.fullScreen))
+        switch effect {
+        case .resize(let size):
+            window.spSetContentSizeKeepingCenter(size)
+        case .setFullscreen(let fullscreen):
+            if window.styleMask.contains(.fullScreen) != fullscreen {
+                perform(.toggleFullscreen)
+            }
+        case nil:
+            break
+        }
+        return true
     }
 
     private func handleKey(_ event: NSEvent) {

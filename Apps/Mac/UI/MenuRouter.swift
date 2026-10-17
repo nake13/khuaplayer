@@ -54,6 +54,25 @@ final class MenuRouter: NSObject, NSMenuDelegate {
             for item in menu.items where !item.isSeparatorItem {
                 item.state = item.tag == cur ? .on : .off
             }
+        case "sp.playbackGestures":
+            for item in menu.items {
+                switch item.identifier?.rawValue {
+                case "sp.playbackGestures.horizontalSeek":
+                    item.state = SPPlaybackGestureSettings.horizontalSeekEnabled ? .on : .off
+                case "sp.playbackGestures.verticalVolume":
+                    item.state = SPPlaybackGestureSettings.verticalVolumeEnabled ? .on : .off
+                default:
+                    break
+                }
+            }
+        case "sp.playbackGestures.pinch":
+            for item in menu.items where !item.isSeparatorItem {
+                item.state = item.tag == SPPlaybackGestureSettings.pinchAction.rawValue ? .on : .off
+            }
+        case "sp.playbackGestures.sensitivity":
+            for item in menu.items where !item.isSeparatorItem {
+                item.state = item.tag == SPPlaybackGestureSettings.sensitivity.rawValue ? .on : .off
+            }
         case "sp.language":
             let current = AppLanguage.current
             for item in menu.items where !item.isSeparatorItem {

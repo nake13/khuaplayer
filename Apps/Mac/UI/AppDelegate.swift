@@ -433,6 +433,24 @@ final class AppDelegate: NSObject, NSApplicationDelegate, NSMenuItemValidation {
         SPTimelineStyleSettings.style = style
     }
 
+    @objc func toggleHorizontalSeekGestureAction(_ sender: Any?) {
+        SPPlaybackGestureSettings.horizontalSeekEnabled.toggle()
+    }
+
+    @objc func toggleVerticalVolumeGestureAction(_ sender: Any?) {
+        SPPlaybackGestureSettings.verticalVolumeEnabled.toggle()
+    }
+
+    @objc func pinchGestureAction(_ sender: NSMenuItem) {
+        guard let action = SPPlaybackGestureSettings.PinchAction(rawValue: sender.tag) else { return }
+        SPPlaybackGestureSettings.pinchAction = action
+    }
+
+    @objc func gestureSensitivityAction(_ sender: NSMenuItem) {
+        guard let sensitivity = SPPlaybackGestureSettings.Sensitivity(rawValue: sender.tag) else { return }
+        SPPlaybackGestureSettings.sensitivity = sensitivity
+    }
+
     @objc func languageAction(_ sender: NSMenuItem) {
         let target = sender.representedObject as? String
         guard target != AppLanguage.current else { return }

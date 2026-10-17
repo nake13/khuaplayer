@@ -11,6 +11,8 @@ final class PlayerView: NSView {
     var onMouseUp: ((NSEvent) -> Void)?
     var onKeyDown: ((NSEvent) -> Void)?
     var onKeyUp: ((NSEvent) -> Void)?
+    var onScrollWheel: ((NSEvent) -> Bool)?
+    var onMagnify: ((NSEvent) -> Bool)?
 
     override init(frame frameRect: NSRect) {
         super.init(frame: frameRect)
@@ -65,6 +67,14 @@ final class PlayerView: NSView {
 
     override func keyUp(with event: NSEvent) {
         onKeyUp?(event)
+    }
+
+    override func scrollWheel(with event: NSEvent) {
+        if onScrollWheel?(event) != true { super.scrollWheel(with: event) }
+    }
+
+    override func magnify(with event: NSEvent) {
+        if onMagnify?(event) != true { super.magnify(with: event) }
     }
 
     override func draggingEntered(_ sender: NSDraggingInfo) -> NSDragOperation {

@@ -50,6 +50,9 @@ for feature availability.
 - **Natural-sounding speed control:** hold Space for Turbo playback, then release
   to return to normal speed. Voices keep their pitch.
 - **Native multichannel audio:** 5.1 and 7.1 output on supported audio devices.
+- **Trackpad gestures:** scroll horizontally to seek, vertically to change volume,
+  and pinch to resize the window. Use **Playback > Gestures** to disable scroll
+  actions, adjust sensitivity, or switch pinch to full screen.
 - **A familiar Mac experience:** playback resume, frame stepping, screenshots,
   multiple playback windows, and an interface available in 17 languages.
 - **Private by design:** no account, ads, or playback analytics. Your media and

@@ -136,6 +136,59 @@ enum MainMenuBuilder {
         }
         styleItem.submenu = styleMenu
         playMenu.addItem(styleItem)
+
+        let gesturesItem = NSMenuItem(title: L("menu.gestures"), action: nil, keyEquivalent: "")
+        let gesturesMenu = NSMenu(title: L("menu.gestures"))
+        gesturesMenu.identifier = NSUserInterfaceItemIdentifier("sp.playbackGestures")
+        gesturesMenu.delegate = trackMenuDelegate
+        gesturesMenu.autoenablesItems = false
+        let horizontalSeekItem = NSMenuItem(title: L("menu.gestures.horizontalSeek"),
+                                            action: #selector(AppDelegate.toggleHorizontalSeekGestureAction(_:)),
+                                            keyEquivalent: "")
+        horizontalSeekItem.identifier = NSUserInterfaceItemIdentifier("sp.playbackGestures.horizontalSeek")
+        gesturesMenu.addItem(horizontalSeekItem)
+        let verticalVolumeItem = NSMenuItem(title: L("menu.gestures.verticalVolume"),
+                                            action: #selector(AppDelegate.toggleVerticalVolumeGestureAction(_:)),
+                                            keyEquivalent: "")
+        verticalVolumeItem.identifier = NSUserInterfaceItemIdentifier("sp.playbackGestures.verticalVolume")
+        gesturesMenu.addItem(verticalVolumeItem)
+        gesturesMenu.addItem(.separator())
+
+        let pinchItem = NSMenuItem(title: L("menu.gestures.pinch"), action: nil, keyEquivalent: "")
+        let pinchMenu = NSMenu(title: L("menu.gestures.pinch"))
+        pinchMenu.identifier = NSUserInterfaceItemIdentifier("sp.playbackGestures.pinch")
+        pinchMenu.delegate = trackMenuDelegate
+        pinchMenu.autoenablesItems = false
+        for (title, action) in [(L("menu.gestures.pinch.resizeWindow"), SPPlaybackGestureSettings.PinchAction.resizeWindow),
+                                (L("menu.gestures.pinch.fullscreen"), .fullscreen),
+                                (L("menu.gestures.pinch.disabled"), .disabled)] {
+            let item = NSMenuItem(title: title,
+                                  action: #selector(AppDelegate.pinchGestureAction(_:)),
+                                  keyEquivalent: "")
+            item.tag = action.rawValue
+            pinchMenu.addItem(item)
+        }
+        pinchItem.submenu = pinchMenu
+        gesturesMenu.addItem(pinchItem)
+
+        let sensitivityItem = NSMenuItem(title: L("menu.gestures.sensitivity"), action: nil, keyEquivalent: "")
+        let sensitivityMenu = NSMenu(title: L("menu.gestures.sensitivity"))
+        sensitivityMenu.identifier = NSUserInterfaceItemIdentifier("sp.playbackGestures.sensitivity")
+        sensitivityMenu.delegate = trackMenuDelegate
+        sensitivityMenu.autoenablesItems = false
+        for (title, sensitivity) in [(L("menu.gestures.sensitivity.low"), SPPlaybackGestureSettings.Sensitivity.low),
+                                     (L("menu.gestures.sensitivity.normal"), .normal),
+                                     (L("menu.gestures.sensitivity.high"), .high)] {
+            let item = NSMenuItem(title: title,
+                                  action: #selector(AppDelegate.gestureSensitivityAction(_:)),
+                                  keyEquivalent: "")
+            item.tag = sensitivity.rawValue
+            sensitivityMenu.addItem(item)
+        }
+        sensitivityItem.submenu = sensitivityMenu
+        gesturesMenu.addItem(sensitivityItem)
+        gesturesItem.submenu = gesturesMenu
+        playMenu.addItem(gesturesItem)
         playMenu.addItem(.separator())
         // Enhanced playback controls exist only in builds that enable them.
         if SPFeatures.enhancements {
